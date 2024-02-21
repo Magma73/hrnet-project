@@ -52,7 +52,8 @@ const ButtonClose = styled.button`
 
 Modal.setAppElement('#root');
 
-const ModalComponent = ({ isOpen, onRequestClose, onClick }) => {
+export default function ModalComponent({ isOpen, onRequestClose, onClick }) {
+
     return (
         <StyledModal>
             <ModalDiv
@@ -71,5 +72,3 @@ const ModalComponent = ({ isOpen, onRequestClose, onClick }) => {
         </StyledModal>
     );
 };
-
-export default ModalComponent;

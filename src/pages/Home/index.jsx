@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom"
 import states from '../../data/states'
 import { addEmployeeInfos } from '../../slices/employeeInfos';
+import ModalComponent from '../../components/Modal';
 
 const InputWithLabel = lazy(() => import('../../components/InputWithLabel'));
 const DatePickerComponent = lazy(() => import('../../components/DatePicker'));
@@ -220,6 +221,12 @@ export default function Home() {
                 {formError && <ErrorMessage>{formError}</ErrorMessage>}
 
                 <ButtonSave type="submit">Save</ButtonSave>
+
+                <ModalComponent
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                    onClick={closeModal}
+                />
 
             </FormComponent>
 
