@@ -1,16 +1,14 @@
 import styled from 'styled-components'
-import React, { useState } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom"
-import DatePickerComponent from '../../components/DatePicker';
-import InputWithLabel from '../../components/InputWithLabel';
-import SelectComponent from '../../components/SelectInput';
-import ModalComponent from '../../components/Modal';
 import states from '../../data/states'
 import { addEmployeeInfos } from '../../slices/employeeInfos';
-// import employeeInfosReducer from '../slices/employeeInfos';
 
-const Main = styled.main`
+const InputWithLabel = lazy(() => import('../../components/InputWithLabel'));
+const DatePickerComponent = lazy(() => import('../../components/DatePicker'));
+
+const SectionContainer = styled.section`
     display: flex;
     flex-direction:column;
     align-items: center;
@@ -52,7 +50,7 @@ const ErrorMessage = styled.p`
  * Function component Home - Represent the Home Page
  * @returns {JSX.Element} The rendered Home component.
  */
-const Home = () => {
+export default function Home() {
     const dispatch = useDispatch();
 
     // State for datepickers
@@ -64,10 +62,11 @@ const Home = () => {
     const [selectedOptionDepartement, setSelectedOptionDepartement] = useState(null);
 
     // Datas for select inputs
-    const optionsStates = states.map(state => ({
-        value: state.abbreviation,
-        label: state.name
-    }));
+    // const optionsStates = states.map(state => ({
+    //     value: state.abbreviation,
+    //     label: state.name
+    // }));
+
 
     const optionsDepartement = [
         { value: 'sales', label: 'Sales' },
@@ -119,109 +118,111 @@ const Home = () => {
     }
 
     return (
-        <Main>
+        <SectionContainer>
             <Link to="/employeelist">View Current Employees</Link>
             <TitleH2>Create Employee</TitleH2>
+
             <FormComponent
                 id="myForm"
                 name="myForm"
                 onSubmit={handleSubmit}
             >
-                <InputWithLabel
-                    htmlFor="first-name"
-                    label="First Name"
-                    id="first-name"
-                    name="first-name"
-                    type="text"
-                />
-                <InputWithLabel
-                    htmlFor="last-name"
-                    label="Last Name"
-                    id="last-name"
-                    name="last-name"
-                    type="text"
-                />
-                <DatePickerComponent
-                    htmlFor="date-of-birth"
-                    label="Date of Birth"
-                    id="date-of-birth"
-                    name="date-of-birth"
-                    type="date"
-                    minDate={minDate}
-                    maxDate={maxDate}
-                    selectedDate={startDateBirth}
-                    onChange={(date) => setStartDateBirth(date)}
-                />
-                <DatePickerComponent
-                    htmlFor="start-date"
-                    label="Start Date"
-                    id="start-date"
-                    name="start-date"
-                    type="date"
-                    selectedDate={startDateEntry}
-                    onChange={(date) => setStartDateEntry(date)}
-                />
+                <Suspense fallback={<div>Loading</div>}>
+
+                    <InputWithLabel
+                        htmlFor="first-name"
+                        label="First Name"
+                        id="first-name"
+                        name="first-name"
+                        type="text"
+                        autoComplete="username"
+                    />
+                </Suspense>
+
+                <Suspense fallback={<div>Loading</div>}>
+
+                    <InputWithLabel
+                        htmlFor="last-name"
+                        label="Last Name"
+                        id="last-name"
+                        name="last-name"
+                        type="text"
+                    />
+                </Suspense>
+
+                <Suspense fallback={<div>Loading</div>}>
+
+                    <DatePickerComponent
+                        htmlFor="date-of-birth"
+                        label="Date of Birth"
+                        id="date-of-birth"
+                        name="date-of-birth"
+                        type="date"
+                        minDate={minDate}
+                        maxDate={maxDate}
+                        selectedDate={startDateBirth}
+                        onChange={(date) => setStartDateBirth(date)}
+                    />
+                </Suspense>
+
+                <Suspense fallback={<div>Loading</div>}>
+
+                    <DatePickerComponent
+                        htmlFor="start-date"
+                        label="Start Date"
+                        id="start-date"
+                        name="start-date"
+                        type="date"
+                        selectedDate={startDateEntry}
+                        onChange={(date) => setStartDateEntry(date)}
+                    />
+                </Suspense>
+
                 <Fieldset>
                     <Legend>Address</Legend>
-                    <InputWithLabel
-                        htmlFor="street"
-                        label="Street"
-                        id="street"
-                        name="street"
-                        type="text"
-                    />
-                    <InputWithLabel
-                        htmlFor="city"
-                        label="City"
-                        id="city"
-                        name="city"
-                        type="text"
-                    />
-                    <SelectComponent
-                        htmlFor="state"
-                        label="State"
-                        id="state"
-                        name="state"
-                        type="text"
-                        defaultValue={selectedOption}
-                        onChange={setSelectedOption}
-                        options={optionsStates}
-                        placeholder="Alabama"
-                    />
-                    <InputWithLabel
-                        htmlFor="zip-code"
-                        label="Zip Code"
-                        id="zip-code"
-                        name="zip-code"
-                        type="number"
-                    />
+                    <Suspense fallback={<div>Loading</div>}>
+
+                        <InputWithLabel
+                            htmlFor="street"
+                            label="Street"
+                            id="street"
+                            name="street"
+                            type="text"
+                        />
+                    </Suspense>
+
+
+
+                    <Suspense fallback={<div>Loading</div>}>
+
+                        <InputWithLabel
+                            htmlFor="city"
+                            label="City"
+                            id="city"
+                            name="city"
+                            type="text"
+                        />
+                    </Suspense>
+
+                    <Suspense fallback={<div>Loading</div>}>
+
+                        <InputWithLabel
+                            htmlFor="zip-code"
+                            label="Zip Code"
+                            id="zip-code"
+                            name="zip-code"
+                            type="number"
+                        />
+                    </Suspense>
+
                 </Fieldset>
 
-                <SelectComponent
-                    htmlFor="department"
-                    label="Department"
-                    id="department"
-                    name="department"
-                    type="text"
-                    defaultValue={selectedOptionDepartement}
-                    onChange={setSelectedOptionDepartement}
-                    options={optionsDepartement}
-                    placeholder="Sales"
-                />
                 {formError && <ErrorMessage>{formError}</ErrorMessage>}
 
                 <ButtonSave type="submit">Save</ButtonSave>
 
-                <ModalComponent
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                    onClick={closeModal}
-                />
-
             </FormComponent>
 
-        </Main>
-
+        </SectionContainer >
     );
 };
-export default Home

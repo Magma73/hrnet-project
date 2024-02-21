@@ -17,8 +17,7 @@ const Label = styled.label`
     margin-bottom: 10px;
 `;
 
-const DatePickerComponent = ({ htmlFor, label, id, name, type, minDate, maxDate, selectedDate, onChange }) => {
-
+export default function DatePickerComponent({ htmlFor, label, id, name, type, minDate, maxDate, selectedDate, onChange }) {
     return (
         <StyledDatePicker>
             <Label htmlFor={htmlFor}>
@@ -36,5 +35,3 @@ const DatePickerComponent = ({ htmlFor, label, id, name, type, minDate, maxDate,
         </StyledDatePicker>
     );
 };
-
-export default DatePickerComponent;

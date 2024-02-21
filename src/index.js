@@ -1,37 +1,61 @@
 import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store, persistor } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { createGlobalStyle } from 'styled-components';
+import Root from './routes/root';
 import Home from './pages/Home';
-import EmployeeList from './pages/EmployeeList';
-import Error from './pages/Error';
-import Header from './components/Header';
-import './index.css';
 // import reportWebVitals from './reportWebVitals';
 
-// const Home = lazy(() => import('./pages/Home'));
-// const EmployeeList = lazy(() => import('./pages/EmployeeList'));
-// const Error = lazy(() => import('./pages/Error'));
+const EmployeeList = lazy(() => import('./pages/EmployeeList'));
+const Error = lazy(() => import('./pages/Error'));
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    /* -moz-osx-font-smoothing: grayscale; */
+  }
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  }
+`;
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: '',
+        element: <Home />,
+      },
+      {
+        path: 'employeelist',
+        element: <EmployeeList />,
+      },
+    ],
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <Header />
-          {/* <Suspense fallback={<Loading />}> */}
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/employeelist" element={<EmployeeList />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-          {/* </Suspense> */}
-        </PersistGate>
-      </Provider>
-    </Router>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Suspense fallback={<div>Loading</div>}>
+          <GlobalStyle />
+          <RouterProvider router={router} />
+        </Suspense>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );
 

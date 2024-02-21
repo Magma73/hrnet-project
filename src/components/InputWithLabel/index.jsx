@@ -13,7 +13,7 @@ const Label = styled.label`
 const Input = styled.input`
 `;
 
-const InputWithLabel = ({ htmlFor, label, id, name, type }) => {
+export default function InputWithLabel({ htmlFor, label, id, name, type, autoComplete }) {
     return (
         <StyledInputWithLabel>
             <Label
@@ -25,9 +25,8 @@ const InputWithLabel = ({ htmlFor, label, id, name, type }) => {
                 id={id}
                 name={name}
                 type={type}
+                autoComplete={autoComplete}
             />
         </StyledInputWithLabel>
     );
 };
-
-export default InputWithLabel;
