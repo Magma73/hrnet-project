@@ -1,6 +1,6 @@
-import Modal from 'react-modal';
 import styled from 'styled-components';
 import closeIcon from '../../assets/img/closeIcon.svg'
+import Modal from 'react-modal';
 
 const StyledModal = styled.div`
 `;
@@ -53,7 +53,6 @@ const ButtonClose = styled.button`
 Modal.setAppElement('#root');
 
 export default function ModalComponent({ isOpen, onRequestClose, onClick }) {
-
     return (
         <StyledModal>
             <ModalDiv

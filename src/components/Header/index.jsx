@@ -1,5 +1,5 @@
-import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
+import { useLocation } from 'react-router-dom'
 
 const HeaderComponent = styled.header`
     display: flex;

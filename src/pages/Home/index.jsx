@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import React, { useState, Suspense, lazy } from "react";
+import React, { useState, Suspense, lazy, useMemo } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom"
 import states from '../../data/states'
@@ -69,13 +69,13 @@ export default function Home() {
     // }));
 
 
-    const optionsDepartement = [
-        { value: 'sales', label: 'Sales' },
-        { value: 'marketing', label: 'Marketing' },
-        { value: 'engineering', label: 'Engineering' },
-        { value: 'human resources', label: 'Human Resources' },
-        { value: 'legal', label: 'Legal' },
-    ];
+    // const optionsDepartement = [
+    //     { value: 'sales', label: 'Sales' },
+    //     { value: 'marketing', label: 'Marketing' },
+    //     { value: 'engineering', label: 'Engineering' },
+    //     { value: 'human resources', label: 'Human Resources' },
+    //     { value: 'legal', label: 'Legal' },
+    // ];
 
     const minDate = new Date();
     minDate.setFullYear(minDate.getFullYear() - 70);
@@ -192,8 +192,6 @@ export default function Home() {
                         />
                     </Suspense>
 
-
-
                     <Suspense fallback={<div>Loading</div>}>
 
                         <InputWithLabel
@@ -204,6 +202,7 @@ export default function Home() {
                             type="text"
                         />
                     </Suspense>
+
 
                     <Suspense fallback={<div>Loading</div>}>
 
