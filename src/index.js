@@ -1,16 +1,10 @@
-import React, { Suspense, lazy } from 'react';
+import { createGlobalStyle } from 'styled-components';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store, persistor } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
-import { createGlobalStyle } from 'styled-components';
-import Root from './routes/root';
-import Home from './pages/Home';
-// import reportWebVitals from './reportWebVitals';
-
-const EmployeeList = lazy(() => import('./pages/EmployeeList'));
-const Error = lazy(() => import('./pages/Error'));
+import App from './App';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -28,38 +22,15 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Root />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: '',
-        element: <Home />,
-      },
-      {
-        path: 'employeelist',
-        element: <EmployeeList />,
-      },
-    ],
-  },
-]);
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Suspense fallback={<div>Loading</div>}>
           <GlobalStyle />
-          <RouterProvider router={router} />
+          <App />
         </Suspense>
       </PersistGate>
     </Provider>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
