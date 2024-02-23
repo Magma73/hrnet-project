@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import React, { useState, Suspense, lazy, useMemo } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom"
-import states from '../../data/states'
+// import states from '../../data/states'
 import { addEmployeeInfos } from '../../slices/employeeInfos';
 import ModalComponent from '../../components/Modal';
 
@@ -59,8 +59,8 @@ export default function Home() {
     const [startDateEntry, setStartDateEntry] = useState(null);
 
     // State for select inputs
-    const [selectedOption, setSelectedOption] = useState(null);
-    const [selectedOptionDepartement, setSelectedOptionDepartement] = useState(null);
+    // const [selectedOption, setSelectedOption] = useState(null);
+    // const [selectedOptionDepartement, setSelectedOptionDepartement] = useState(null);
 
     // Datas for select inputs
     // const optionsStates = states.map(state => ({
