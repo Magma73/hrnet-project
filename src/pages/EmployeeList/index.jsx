@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
 import { Outlet } from 'react-router-dom';
+import Header from '../../components/Header';
+
 // import storage from 'redux-persist/lib/storage'
 
 const Main = styled.main`
@@ -16,9 +18,15 @@ const Main = styled.main`
 export default function EmployeeList() {
     // console.log(storage);
     return (
-        <Main>
-            <Link to="/">Home</Link>
-            <Outlet />
-        </Main>
+        <div>
+            <Header
+                title="Error page"
+            />
+
+            <Main>
+                <Link to="/">Home</Link>
+                <Outlet />
+            </Main>
+        </div>
     );
 };

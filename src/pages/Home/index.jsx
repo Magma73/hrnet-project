@@ -3,6 +3,7 @@ import React, { useState, Suspense, lazy } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom"
 import { addEmployeeInfos } from '../../slices/employeeInfos';
+import Header from '../../components/Header';
 import ModalComponent from '../../components/Modal';
 import states from '../../data/states'
 
@@ -120,139 +121,144 @@ export default function Home() {
     }
 
     return (
-        <SectionContainer>
-            <Link to="/employeelist">View Current Employees</Link>
-            <TitleH2>Create Employee</TitleH2>
+        <div>
+            <Header
+                title="HR Net"
+            />
+            <SectionContainer>
+                <Link to="/employeelist">View Current Employees</Link>
+                <TitleH2>Create Employee</TitleH2>
 
-            <FormComponent
-                id="myForm"
-                name="myForm"
-                onSubmit={handleSubmit}
-            >
-                <Suspense fallback={<div>Loading</div>}>
-                    <InputWithLabel
-                        htmlFor="first-name"
-                        label="First Name"
-                        id="first-name"
-                        name="first-name"
-                        type="text"
-                        autoComplete="username"
-                    />
-                </Suspense>
-
-                <Suspense fallback={<div>Loading</div>}>
-                    <InputWithLabel
-                        htmlFor="last-name"
-                        label="Last Name"
-                        id="last-name"
-                        name="last-name"
-                        type="text"
-                    />
-                </Suspense>
-
-                <Suspense fallback={<div>Loading</div>}>
-                    <DatePickerComponent
-                        htmlFor="date-of-birth"
-                        label="Date of Birth"
-                        id="date-of-birth"
-                        name="date-of-birth"
-                        type="date"
-                        minDate={minDate}
-                        maxDate={maxDate}
-                        selectedDate={startDateBirth}
-                        onChange={(date) => setStartDateBirth(date)}
-                    />
-                </Suspense>
-
-                <Suspense fallback={<div>Loading</div>}>
-                    <DatePickerComponent
-                        htmlFor="start-date"
-                        label="Start Date"
-                        id="start-date"
-                        name="start-date"
-                        type="date"
-                        minDate={minStartDate}
-                        selectedDate={startDateEntry}
-                        onChange={(date) => setStartDateEntry(date)}
-                    />
-                </Suspense>
-
-                <Fieldset>
-                    <Legend>Address</Legend>
+                <FormComponent
+                    id="myForm"
+                    name="myForm"
+                    onSubmit={handleSubmit}
+                >
                     <Suspense fallback={<div>Loading</div>}>
                         <InputWithLabel
-                            htmlFor="street"
-                            label="Street"
-                            id="street"
-                            name="street"
+                            htmlFor="first-name"
+                            label="First Name"
+                            id="first-name"
+                            name="first-name"
                             type="text"
+                            autoComplete="username"
                         />
                     </Suspense>
 
                     <Suspense fallback={<div>Loading</div>}>
                         <InputWithLabel
-                            htmlFor="city"
-                            label="City"
-                            id="city"
-                            name="city"
+                            htmlFor="last-name"
+                            label="Last Name"
+                            id="last-name"
+                            name="last-name"
                             type="text"
                         />
                     </Suspense>
 
+                    <Suspense fallback={<div>Loading</div>}>
+                        <DatePickerComponent
+                            htmlFor="date-of-birth"
+                            label="Date of Birth"
+                            id="date-of-birth"
+                            name="date-of-birth"
+                            type="date"
+                            minDate={minDate}
+                            maxDate={maxDate}
+                            selectedDate={startDateBirth}
+                            onChange={(date) => setStartDateBirth(date)}
+                        />
+                    </Suspense>
+
+                    <Suspense fallback={<div>Loading</div>}>
+                        <DatePickerComponent
+                            htmlFor="start-date"
+                            label="Start Date"
+                            id="start-date"
+                            name="start-date"
+                            type="date"
+                            minDate={minStartDate}
+                            selectedDate={startDateEntry}
+                            onChange={(date) => setStartDateEntry(date)}
+                        />
+                    </Suspense>
+
+                    <Fieldset>
+                        <Legend>Address</Legend>
+                        <Suspense fallback={<div>Loading</div>}>
+                            <InputWithLabel
+                                htmlFor="street"
+                                label="Street"
+                                id="street"
+                                name="street"
+                                type="text"
+                            />
+                        </Suspense>
+
+                        <Suspense fallback={<div>Loading</div>}>
+                            <InputWithLabel
+                                htmlFor="city"
+                                label="City"
+                                id="city"
+                                name="city"
+                                type="text"
+                            />
+                        </Suspense>
+
+
+                        <Suspense fallback={<div>Loading</div>}>
+                            <SelectComponent
+                                htmlFor="state"
+                                label="State"
+                                inputId="state"
+                                name="state"
+                                type="text"
+                                defaultValue={selectedOption}
+                                onChange={setSelectedOption}
+                                options={optionsStates}
+                                placeholder="Alabama"
+                            />
+                        </Suspense>
+
+
+                        <Suspense fallback={<div>Loading</div>}>
+                            <InputWithLabel
+                                htmlFor="zip-code"
+                                label="Zip Code"
+                                id="zip-code"
+                                name="zip-code"
+                                type="number"
+                            />
+                        </Suspense>
+
+                    </Fieldset>
 
                     <Suspense fallback={<div>Loading</div>}>
                         <SelectComponent
-                            htmlFor="state"
-                            label="State"
-                            inputId="state"
-                            name="state"
+                            htmlFor="department"
+                            label="Department"
+                            inputId="department"
+                            name="department"
                             type="text"
-                            defaultValue={selectedOption}
-                            onChange={setSelectedOption}
-                            options={optionsStates}
-                            placeholder="Alabama"
+                            defaultValue={selectedOptionDepartement}
+                            onChange={setSelectedOptionDepartement}
+                            options={optionsDepartement}
+                            placeholder="Sales"
                         />
                     </Suspense>
 
+                    {formError && <ErrorMessage>{formError}</ErrorMessage>}
 
-                    <Suspense fallback={<div>Loading</div>}>
-                        <InputWithLabel
-                            htmlFor="zip-code"
-                            label="Zip Code"
-                            id="zip-code"
-                            name="zip-code"
-                            type="number"
-                        />
-                    </Suspense>
+                    <ButtonSave type="submit">Save</ButtonSave>
 
-                </Fieldset>
-
-                <Suspense fallback={<div>Loading</div>}>
-                    <SelectComponent
-                        htmlFor="department"
-                        label="Department"
-                        inputId="department"
-                        name="department"
-                        type="text"
-                        defaultValue={selectedOptionDepartement}
-                        onChange={setSelectedOptionDepartement}
-                        options={optionsDepartement}
-                        placeholder="Sales"
+                    <ModalComponent
+                        isOpen={isModalOpen}
+                        onRequestClose={closeModal}
+                        onClick={closeModal}
                     />
-                </Suspense>
 
-                {formError && <ErrorMessage>{formError}</ErrorMessage>}
+                </FormComponent>
 
-                <ButtonSave type="submit">Save</ButtonSave>
-
-                <ModalComponent
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                    onClick={closeModal}
-                />
-
-            </FormComponent>
-
-        </SectionContainer >
+            </SectionContainer >
+        </div>
     );
 };
