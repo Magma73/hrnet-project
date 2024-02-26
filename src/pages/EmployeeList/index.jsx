@@ -1,18 +1,8 @@
-import styled from 'styled-components'
+import "../../style/style.css";
 import { Link } from "react-router-dom"
 import { Outlet } from 'react-router-dom';
 
 // import storage from 'redux-persist/lib/storage'
-
-const Main = styled.main`
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-`
-const Title = styled.h1`
-    text-align:center;
-    font-size: 2em;
-`
 
 /**
  * Function component EmployeeList - Represent the EmployeeList Page
@@ -22,12 +12,11 @@ export default function EmployeeList() {
     // console.log(storage);
     return (
         <div>
-            <Title>Employee List</Title>
-
-            <Main>
+            <h1>Employee Page</h1>
+            <main>
                 <Link to="/">Home</Link>
                 <Outlet />
-            </Main>
+            </main>
         </div>
     );
 };

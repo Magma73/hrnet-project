@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import "../../style/style.css";
 import React, { useState, Suspense, lazy } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom"
@@ -14,10 +15,6 @@ const SectionContainer = styled.section`
     display: flex;
     flex-direction:column;
     align-items: center;
-`
-const TitleH1 = styled.h1`
-    text-align:center;
-    font-size: 2em;
 `
 
 const TitleH2 = styled.h2`
@@ -125,7 +122,7 @@ export default function Home() {
 
     return (
         <div>
-            <TitleH1>HR Net</TitleH1>
+            <h1 className="titleh1">HR Net</h1>
             <SectionContainer>
                 <Link to="/employeelist">View Current Employees</Link>
                 <TitleH2>Create Employee</TitleH2>
