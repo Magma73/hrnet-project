@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Header from '../../components/Header';
 import { Link, useRouteError } from "react-router-dom"
 
 const Main = styled.main`
@@ -7,18 +6,21 @@ const Main = styled.main`
     flex-direction:column;
     align-items: center;
 `
-const Title = styled.h2`
+const TitleH1 = styled.h1`
+    text-align:center;
+    font-size: 2em;
+`
+
+const TitleH2 = styled.h2`
 `
 
 export default function Error() {
     const error = useRouteError();
     return (
         <div>
-            <Header
-                title="Error page"
-            />
+            <TitleH1>Error page</TitleH1>
             <Main>
-                <Title>Error {error.status} {error.statusText}</Title>
+                <TitleH2>Error {error.status} {error.statusText}</TitleH2>
                 <Link to="/">Back to Home Page</Link>
             </Main>
         </div>

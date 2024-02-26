@@ -3,7 +3,6 @@ import React, { useState, Suspense, lazy } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom"
 import { addEmployeeInfos } from '../../slices/employeeInfos';
-import Header from '../../components/Header';
 import ModalComponent from '../../components/Modal';
 import states from '../../data/states'
 
@@ -15,6 +14,10 @@ const SectionContainer = styled.section`
     display: flex;
     flex-direction:column;
     align-items: center;
+`
+const TitleH1 = styled.h1`
+    text-align:center;
+    font-size: 2em;
 `
 
 const TitleH2 = styled.h2`
@@ -122,9 +125,7 @@ export default function Home() {
 
     return (
         <div>
-            <Header
-                title="HR Net"
-            />
+            <TitleH1>HR Net</TitleH1>
             <SectionContainer>
                 <Link to="/employeelist">View Current Employees</Link>
                 <TitleH2>Create Employee</TitleH2>

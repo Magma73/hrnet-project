@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
 import { Outlet } from 'react-router-dom';
-import Header from '../../components/Header';
 
 // import storage from 'redux-persist/lib/storage'
 
@@ -9,6 +8,10 @@ const Main = styled.main`
     display: flex;
     flex-direction:column;
     align-items: center;
+`
+const Title = styled.h1`
+    text-align:center;
+    font-size: 2em;
 `
 
 /**
@@ -19,9 +22,7 @@ export default function EmployeeList() {
     // console.log(storage);
     return (
         <div>
-            <Header
-                title="Error page"
-            />
+            <Title>Employee List</Title>
 
             <Main>
                 <Link to="/">Home</Link>
