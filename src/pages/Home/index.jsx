@@ -69,7 +69,6 @@ export default function Home() {
         label: state.name
     }));
 
-
     const optionsDepartement = [
         { value: 'sales', label: 'Sales' },
         { value: 'marketing', label: 'Marketing' },
@@ -84,6 +83,9 @@ export default function Home() {
     // Calculer la date maximale (70 ans avant aujourd'hui)
     const maxDate = new Date();
     maxDate.setFullYear(maxDate.getFullYear() - 18);
+
+    const minStartDate = new Date();
+    minStartDate.setDate(minStartDate.getDate() + 7);
 
     // State for the modal
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -169,6 +171,7 @@ export default function Home() {
                         id="start-date"
                         name="start-date"
                         type="date"
+                        minDate={minStartDate}
                         selectedDate={startDateEntry}
                         onChange={(date) => setStartDateEntry(date)}
                     />
@@ -213,7 +216,6 @@ export default function Home() {
 
 
                     <Suspense fallback={<div>Loading</div>}>
-
                         <InputWithLabel
                             htmlFor="zip-code"
                             label="Zip Code"
