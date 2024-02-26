@@ -2,12 +2,13 @@ import styled from 'styled-components'
 import React, { useState, Suspense, lazy } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom"
-// import states from '../../data/states'
 import { addEmployeeInfos } from '../../slices/employeeInfos';
 import ModalComponent from '../../components/Modal';
+import states from '../../data/states'
 
 const InputWithLabel = lazy(() => import('../../components/InputWithLabel'));
 const DatePickerComponent = lazy(() => import('../../components/DatePicker'));
+const SelectComponent = lazy(() => import('../../components/SelectInput'));
 
 const SectionContainer = styled.section`
     display: flex;
@@ -59,23 +60,23 @@ export default function Home() {
     const [startDateEntry, setStartDateEntry] = useState(null);
 
     // State for select inputs
-    // const [selectedOption, setSelectedOption] = useState(null);
-    // const [selectedOptionDepartement, setSelectedOptionDepartement] = useState(null);
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedOptionDepartement, setSelectedOptionDepartement] = useState(null);
 
     // Datas for select inputs
-    // const optionsStates = states.map(state => ({
-    //     value: state.abbreviation,
-    //     label: state.name
-    // }));
+    const optionsStates = states.map(state => ({
+        value: state.abbreviation,
+        label: state.name
+    }));
 
 
-    // const optionsDepartement = [
-    //     { value: 'sales', label: 'Sales' },
-    //     { value: 'marketing', label: 'Marketing' },
-    //     { value: 'engineering', label: 'Engineering' },
-    //     { value: 'human resources', label: 'Human Resources' },
-    //     { value: 'legal', label: 'Legal' },
-    // ];
+    const optionsDepartement = [
+        { value: 'sales', label: 'Sales' },
+        { value: 'marketing', label: 'Marketing' },
+        { value: 'engineering', label: 'Engineering' },
+        { value: 'human resources', label: 'Human Resources' },
+        { value: 'legal', label: 'Legal' },
+    ];
 
     const minDate = new Date();
     minDate.setFullYear(minDate.getFullYear() - 70);
@@ -83,7 +84,6 @@ export default function Home() {
     // Calculer la date maximale (70 ans avant aujourd'hui)
     const maxDate = new Date();
     maxDate.setFullYear(maxDate.getFullYear() - 18);
-
 
     // State for the modal
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -109,10 +109,9 @@ export default function Home() {
             }
             employeeData[key] = value;
         }
-        // // Dispatch l'action Redux avec les informations de l'employé
         setFormError('');
 
-        // dispatch(addEmployeeInfos(employeeData));
+        // Dispatch redux action with employee datas
         dispatch(addEmployeeInfos(employeeData));
         openModal();
 
@@ -129,7 +128,6 @@ export default function Home() {
                 onSubmit={handleSubmit}
             >
                 <Suspense fallback={<div>Loading</div>}>
-
                     <InputWithLabel
                         htmlFor="first-name"
                         label="First Name"
@@ -141,7 +139,6 @@ export default function Home() {
                 </Suspense>
 
                 <Suspense fallback={<div>Loading</div>}>
-
                     <InputWithLabel
                         htmlFor="last-name"
                         label="Last Name"
@@ -152,7 +149,6 @@ export default function Home() {
                 </Suspense>
 
                 <Suspense fallback={<div>Loading</div>}>
-
                     <DatePickerComponent
                         htmlFor="date-of-birth"
                         label="Date of Birth"
@@ -167,7 +163,6 @@ export default function Home() {
                 </Suspense>
 
                 <Suspense fallback={<div>Loading</div>}>
-
                     <DatePickerComponent
                         htmlFor="start-date"
                         label="Start Date"
@@ -182,7 +177,6 @@ export default function Home() {
                 <Fieldset>
                     <Legend>Address</Legend>
                     <Suspense fallback={<div>Loading</div>}>
-
                         <InputWithLabel
                             htmlFor="street"
                             label="Street"
@@ -193,13 +187,27 @@ export default function Home() {
                     </Suspense>
 
                     <Suspense fallback={<div>Loading</div>}>
-
                         <InputWithLabel
                             htmlFor="city"
                             label="City"
                             id="city"
                             name="city"
                             type="text"
+                        />
+                    </Suspense>
+
+
+                    <Suspense fallback={<div>Loading</div>}>
+                        <SelectComponent
+                            htmlFor="state"
+                            label="State"
+                            inputId="state"
+                            name="state"
+                            type="text"
+                            defaultValue={selectedOption}
+                            onChange={setSelectedOption}
+                            options={optionsStates}
+                            placeholder="Alabama"
                         />
                     </Suspense>
 
@@ -216,6 +224,20 @@ export default function Home() {
                     </Suspense>
 
                 </Fieldset>
+
+                <Suspense fallback={<div>Loading</div>}>
+                    <SelectComponent
+                        htmlFor="department"
+                        label="Department"
+                        inputId="department"
+                        name="department"
+                        type="text"
+                        defaultValue={selectedOptionDepartement}
+                        onChange={setSelectedOptionDepartement}
+                        options={optionsDepartement}
+                        placeholder="Sales"
+                    />
+                </Suspense>
 
                 {formError && <ErrorMessage>{formError}</ErrorMessage>}
 
