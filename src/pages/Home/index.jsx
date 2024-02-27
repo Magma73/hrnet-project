@@ -10,8 +10,6 @@ const InputWithLabel = lazy(() => import('../../components/InputWithLabel'));
 const DatePickerComponent = lazy(() => import('../../components/DatePicker'));
 const SelectComponent = lazy(() => import('../../components/SelectInput'));
 
-
-
 /**
  * Function component Home - Represent the Home Page
  * @returns {JSX.Element} The rendered Home component.
@@ -180,7 +178,6 @@ export default function Home() {
                                 placeholder="Alabama"
                             />
                         </Suspense>
-
 
                         <Suspense fallback={<div>Loading</div>}>
                             <InputWithLabel
