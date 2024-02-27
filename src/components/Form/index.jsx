@@ -135,51 +135,53 @@ export default function EmployeeForm() {
                 />
             </Suspense>
 
-            <Fieldset legend="Address">
-                <Suspense fallback={<div>Loading</div>}>
-                    <InputWithLabel
-                        htmlFor="street"
-                        label="Street"
-                        id="street"
-                        name="street"
-                        type="text"
-                    />
-                </Suspense>
+            <Suspense fallback={<div>Loading</div>}>
+                <Fieldset legend="Address">
+                    <Suspense fallback={<div>Loading</div>}>
+                        <InputWithLabel
+                            htmlFor="street"
+                            label="Street"
+                            id="street"
+                            name="street"
+                            type="text"
+                        />
+                    </Suspense>
 
-                <Suspense fallback={<div>Loading</div>}>
-                    <InputWithLabel
-                        htmlFor="city"
-                        label="City"
-                        id="city"
-                        name="city"
-                        type="text"
-                    />
-                </Suspense>
+                    <Suspense fallback={<div>Loading</div>}>
+                        <InputWithLabel
+                            htmlFor="city"
+                            label="City"
+                            id="city"
+                            name="city"
+                            type="text"
+                        />
+                    </Suspense>
 
-                <Suspense fallback={<div>Loading</div>}>
-                    <SelectComponent
-                        htmlFor="state"
-                        label="State"
-                        inputId="state"
-                        name="state"
-                        type="text"
-                        defaultValue={selectedOption}
-                        onChange={setSelectedOption}
-                        options={optionsStates}
-                        placeholder="Alabama"
-                    />
-                </Suspense>
+                    <Suspense fallback={<div>Loading</div>}>
+                        <SelectComponent
+                            htmlFor="state"
+                            label="State"
+                            inputId="state"
+                            name="state"
+                            type="text"
+                            defaultValue={selectedOption}
+                            onChange={setSelectedOption}
+                            options={optionsStates}
+                            placeholder="Alabama"
+                        />
+                    </Suspense>
 
-                <Suspense fallback={<div>Loading</div>}>
-                    <InputWithLabel
-                        htmlFor="zip-code"
-                        label="Zip Code"
-                        id="zip-code"
-                        name="zip-code"
-                        type="number"
-                    />
-                </Suspense>
-            </Fieldset>
+                    <Suspense fallback={<div>Loading</div>}>
+                        <InputWithLabel
+                            htmlFor="zip-code"
+                            label="Zip Code"
+                            id="zip-code"
+                            name="zip-code"
+                            type="number"
+                        />
+                    </Suspense>
+                </Fieldset>
+            </Suspense>
 
             <Suspense fallback={<div>Loading</div>}>
                 <SelectComponent
