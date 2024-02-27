@@ -25,6 +25,16 @@ export default function Home() {
     const [selectedOption, setSelectedOption] = useState(null);
     const [selectedOptionDepartement, setSelectedOptionDepartement] = useState(null);
 
+    const minDate = new Date();
+    minDate.setFullYear(minDate.getFullYear() - 70);
+
+    // Calculer la date maximale (70 ans avant aujourd'hui)
+    const maxDate = new Date();
+    maxDate.setFullYear(maxDate.getFullYear() - 18);
+
+    const minStartDate = new Date();
+    minStartDate.setDate(minStartDate.getDate() + 7);
+
     // Datas for select inputs
     const optionsStates = states.map(state => ({
         value: state.abbreviation,
@@ -38,16 +48,6 @@ export default function Home() {
         { value: 'human resources', label: 'Human Resources' },
         { value: 'legal', label: 'Legal' },
     ];
-
-    const minDate = new Date();
-    minDate.setFullYear(minDate.getFullYear() - 70);
-
-    // Calculer la date maximale (70 ans avant aujourd'hui)
-    const maxDate = new Date();
-    maxDate.setFullYear(maxDate.getFullYear() - 18);
-
-    const minStartDate = new Date();
-    minStartDate.setDate(minStartDate.getDate() + 7);
 
     // State for the modal
     const [isModalOpen, setIsModalOpen] = useState(false);

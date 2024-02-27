@@ -12,14 +12,12 @@
     "react-router-dom": "^6.22.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
-    "redux-persist": "^6.0.0",
-    "styled-components": "^6.1.8"
+    "redux-persist": "^6.0.0"
   },
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
-    "analyze": "source-map-explorer 'build/static/js/*.js'"
+    "test": "craco test"
   },
   "eslintConfig": {
     "extends": [
@@ -47,7 +45,6 @@
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
     "jsdoc": "^4.0.2",
-    "prettier": "^3.2.5",
-    "source-map-explorer": "^2.5.3"
+    "prettier": "^3.2.5"
   }
 }
