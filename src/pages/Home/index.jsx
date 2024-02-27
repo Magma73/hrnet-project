@@ -3,12 +3,12 @@ import React, { useState, Suspense, lazy } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom"
 import { addEmployeeInfos } from '../../slices/employeeInfos';
-import ModalComponent from '../../components/Modal';
 import states from '../../data/states'
 
 const InputWithLabel = lazy(() => import('../../components/InputWithLabel'));
 const DatePickerComponent = lazy(() => import('../../components/DatePicker'));
 const SelectComponent = lazy(() => import('../../components/SelectInput'));
+const ModalComponent = lazy(() => import('../../components/Modal'));
 
 /**
  * Function component Home - Represent the Home Page
@@ -209,11 +209,13 @@ export default function Home() {
 
                     <button className={styles.btn} type="submit">Save</button>
 
-                    <ModalComponent
-                        isOpen={isModalOpen}
-                        onRequestClose={closeModal}
-                        onClick={closeModal}
-                    />
+                    <Suspense fallback={<div>Loading</div>}>
+                        <ModalComponent
+                            isOpen={isModalOpen}
+                            onRequestClose={closeModal}
+                            onClick={closeModal}
+                        />
+                    </Suspense>
 
                 </form>
 
