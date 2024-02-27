@@ -8,7 +8,7 @@ import states from '../../data/states';
 // import DatePickerComponent from '../../components/DatePicker';
 // import SelectComponent from '../../components/SelectInput';
 // import ModalComponent from '../../components/Modal';
-
+const Fieldset = lazy(() => import('../../components/Fieldset'));
 const InputWithLabel = lazy(() => import('../../components/InputWithLabel'));
 const DatePickerComponent = lazy(() => import('../../components/DatePicker'));
 const SelectComponent = lazy(() => import('../../components/SelectInput'));
@@ -134,8 +134,8 @@ export default function EmployeeForm() {
                     onChange={(date) => setStartDateEntry(date)}
                 />
             </Suspense>
-            <fieldset className={styles.fieldset}>
-                <legend>Address</legend>
+
+            <Fieldset legend="Address">
                 <Suspense fallback={<div>Loading</div>}>
                     <InputWithLabel
                         htmlFor="street"
@@ -179,7 +179,7 @@ export default function EmployeeForm() {
                         type="number"
                     />
                 </Suspense>
-            </fieldset>
+            </Fieldset>
 
             <Suspense fallback={<div>Loading</div>}>
                 <SelectComponent
