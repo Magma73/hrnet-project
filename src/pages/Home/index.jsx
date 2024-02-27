@@ -1,8 +1,9 @@
 import styles from "./Home.module.css";
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Link } from "react-router-dom"
-import EmployeeForm from "../../components/Form";
+// import EmployeeForm from "../../components/Form";
 
+const EmployeeForm = lazy(() => import('../../components/Form'));
 /**
  * Function component Home - Represent the Home Page
  * @returns {JSX.Element} The rendered Home component.
@@ -16,7 +17,9 @@ export default function Home() {
                 <Link to="/employeelist">View Current Employees</Link>
                 <h2 className={styles.h2}>Create Employee</h2>
 
-                <EmployeeForm />
+                <Suspense fallback={<div>Loading</div>}>
+                    <EmployeeForm />
+                </Suspense>
 
             </section >
         </div>
