@@ -1,29 +1,17 @@
+import styles from "./DatePicker.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import styled from 'styled-components';
-
-const StyledDatePicker = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const DatePickerInput = styled(DatePicker)`
-    width:100%;
-    margin:auto;
-`;
-
-const Label = styled.label`
-    margin-top: 1rem;
-    margin-bottom: 10px;
-`;
 
 export default function DatePickerComponent({ htmlFor, label, id, name, type, minDate, maxDate, selectedDate, onChange }) {
     return (
-        <StyledDatePicker>
-            <Label htmlFor={htmlFor}>
+        <div className={styles.container}>
+            <label
+                className={styles.label}
+                htmlFor={htmlFor}>
                 {label}
-            </Label>
-            <DatePickerInput
+            </label>
+            <DatePicker
+                className={styles.datepicker}
                 id={id}
                 name={name}
                 type={type}
@@ -32,6 +20,6 @@ export default function DatePickerComponent({ htmlFor, label, id, name, type, mi
                 selected={selectedDate}
                 onChange={onChange}
             />
-        </StyledDatePicker>
+        </div>
     );
 };

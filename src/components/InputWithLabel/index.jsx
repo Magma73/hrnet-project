@@ -1,32 +1,20 @@
-import styled from 'styled-components';
-
-const StyledInputWithLabel = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const Label = styled.label`
-    margin-top: 1rem;
-    margin-bottom: 10px;
-`;
-
-const Input = styled.input`
-`;
+import styles from "./InputLabel.module.css";
 
 export default function InputWithLabel({ htmlFor, label, id, name, type, autoComplete }) {
     return (
-        <StyledInputWithLabel>
-            <Label
+        <div className={styles.container}>
+            <label
+                className={styles.label}
                 htmlFor={htmlFor}
             >
                 {label}
-            </Label>
-            <Input
+            </label>
+            <input
                 id={id}
                 name={name}
                 type={type}
                 autoComplete={autoComplete}
             />
-        </StyledInputWithLabel>
+        </div>
     );
 };
