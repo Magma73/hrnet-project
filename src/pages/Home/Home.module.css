@@ -1,0 +1,37 @@
+
+main, section{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+h1{
+    text-align:center;
+    font-size: 2em;
+}
+h2{
+    text-align:center;
+    font-size: 2em;
+}
+form{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    max-width:390px;
+    margin:auto;
+    margin-bottom:16px;
+    padding: 0px 20px;
+}
+fieldset{
+    margin-top: 10px;
+}
+.btn{
+    width:100%;
+    max-width:90px;
+    margin: 10px auto;
+    cursor:pointer;
+}
+.errorMessage{
+    text-align:center;
+    color: red;
+}

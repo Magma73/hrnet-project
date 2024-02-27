@@ -1,5 +1,4 @@
-import styled from 'styled-components'
-import "../../style/style.css";
+import styles from "./Home.module.css";
 import React, { useState, Suspense, lazy } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom"
@@ -11,43 +10,7 @@ const InputWithLabel = lazy(() => import('../../components/InputWithLabel'));
 const DatePickerComponent = lazy(() => import('../../components/DatePicker'));
 const SelectComponent = lazy(() => import('../../components/SelectInput'));
 
-const SectionContainer = styled.section`
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-`
 
-const TitleH2 = styled.h2`
-`
-
-const FormComponent = styled.form`
-    display:flex;
-    flex-direction:column;
-    width:100%;
-    max-width:390px;
-    margin:auto;
-    margin-bottom:16px;
-    padding: 0px 20px;
-`
-
-const Fieldset = styled.fieldset`
-    margin-top: 10px;
-`
-
-const Legend = styled.legend`
-`
-
-const ButtonSave = styled.button`
-    width:100%;
-    max-width:90px;
-    margin: 10px auto;
-    cursor:pointer;
-`
-
-const ErrorMessage = styled.p`
-    text-align:center;
-    color: red;
-`
 
 /**
  * Function component Home - Represent the Home Page
@@ -122,12 +85,13 @@ export default function Home() {
 
     return (
         <div>
-            <h1 className="titleh1">HR Net</h1>
-            <SectionContainer>
+            <h1 className={styles.h1}>HR Net</h1>
+            <section className={styles.section}>
                 <Link to="/employeelist">View Current Employees</Link>
-                <TitleH2>Create Employee</TitleH2>
+                <h2 className={styles.h2}>Create Employee</h2>
 
-                <FormComponent
+                <form
+                    className={styles.form}
                     id="myForm"
                     name="myForm"
                     onSubmit={handleSubmit}
@@ -180,8 +144,8 @@ export default function Home() {
                         />
                     </Suspense>
 
-                    <Fieldset>
-                        <Legend>Address</Legend>
+                    <fieldset className={styles.fieldset}>
+                        <legend className={styles.legend}>Address</legend>
                         <Suspense fallback={<div>Loading</div>}>
                             <InputWithLabel
                                 htmlFor="street"
@@ -228,7 +192,7 @@ export default function Home() {
                             />
                         </Suspense>
 
-                    </Fieldset>
+                    </fieldset>
 
                     <Suspense fallback={<div>Loading</div>}>
                         <SelectComponent
@@ -244,9 +208,9 @@ export default function Home() {
                         />
                     </Suspense>
 
-                    {formError && <ErrorMessage>{formError}</ErrorMessage>}
+                    {formError && <p className={styles.errorMessage}>{formError}</p>}
 
-                    <ButtonSave type="submit">Save</ButtonSave>
+                    <button className={styles.btn} type="submit">Save</button>
 
                     <ModalComponent
                         isOpen={isModalOpen}
@@ -254,9 +218,9 @@ export default function Home() {
                         onClick={closeModal}
                     />
 
-                </FormComponent>
+                </form>
 
-            </SectionContainer >
+            </section >
         </div>
     );
 };
