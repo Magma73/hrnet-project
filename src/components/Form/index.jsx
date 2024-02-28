@@ -1,13 +1,9 @@
 import styles from "./EmployeeForm.module.css";
 import React, { useState, lazy, Suspense } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addEmployeeInfos } from '../../slices/employeeInfos';
 import states from '../../data/states';
 
-// import InputWithLabel from '../../components/InputWithLabel';
-// import DatePickerComponent from '../../components/DatePicker';
-// import SelectComponent from '../../components/SelectInput';
-// import ModalComponent from '../../components/Modal';
 const Fieldset = lazy(() => import('../../components/Fieldset'));
 const InputWithLabel = lazy(() => import('../../components/InputWithLabel'));
 const DatePickerComponent = lazy(() => import('../../components/DatePicker'));
@@ -17,30 +13,24 @@ const ModalComponent = lazy(() => import('../../components/Modal'));
 export default function EmployeeForm() {
     const dispatch = useDispatch();
 
-    // State for datepickers
     const [startDateBirth, setStartDateBirth] = useState(null);
     const [startDateEntry, setStartDateEntry] = useState(null);
-
-    // State for select inputs
     const [selectedOption, setSelectedOption] = useState(null);
     const [selectedOptionDepartement, setSelectedOptionDepartement] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [formError, setFormError] = useState('');
 
+    // Autres constantes
     const minDate = new Date();
     minDate.setFullYear(minDate.getFullYear() - 70);
-
-    // Calculer la date maximale (70 ans avant aujourd'hui)
     const maxDate = new Date();
     maxDate.setFullYear(maxDate.getFullYear() - 18);
-
     const minStartDate = new Date();
     minStartDate.setDate(minStartDate.getDate() + 7);
-
-    // Datas for select inputs
     const optionsStates = states.map(state => ({
         value: state.abbreviation,
         label: state.name
     }));
-
     const optionsDepartement = [
         { value: 'sales', label: 'Sales' },
         { value: 'marketing', label: 'Marketing' },
@@ -49,17 +39,10 @@ export default function EmployeeForm() {
         { value: 'legal', label: 'Legal' },
     ];
 
-    // State for the modal
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
     // Functions for the modal
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    const employees = useSelector(state => state.employees);
-    console.log("employeelists : ", employees)
-
-    const [formError, setFormError] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
