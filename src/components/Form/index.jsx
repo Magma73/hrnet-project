@@ -10,9 +10,14 @@ const DatePickerComponent = lazy(() => import('../../components/DatePicker'));
 const SelectComponent = lazy(() => import('../../components/SelectInput'));
 const ModalComponent = lazy(() => import('../../components/Modal'));
 
+/**
+ * Function component Employee Form - Represent the Form Component
+ * @returns {JSX.Element} The rendered Employee Form  component.
+ */
 export default function EmployeeForm() {
     const dispatch = useDispatch();
 
+    // State variables using useState hook
     const [startDateBirth, setStartDateBirth] = useState(null);
     const [startDateEntry, setStartDateEntry] = useState(null);
     const [selectedOption, setSelectedOption] = useState(null);
@@ -20,17 +25,21 @@ export default function EmployeeForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [formError, setFormError] = useState('');
 
-    // Autres constantes
+    // Other constants for date calculations and options
     const minDate = new Date();
     minDate.setFullYear(minDate.getFullYear() - 70);
+
     const maxDate = new Date();
     maxDate.setFullYear(maxDate.getFullYear() - 18);
+
     const minStartDate = new Date();
     minStartDate.setDate(minStartDate.getDate() + 7);
+
     const optionsStates = states.map(state => ({
         value: state.abbreviation,
         label: state.name
     }));
+
     const optionsDepartement = [
         { value: 'sales', label: 'Sales' },
         { value: 'marketing', label: 'Marketing' },
@@ -42,7 +51,6 @@ export default function EmployeeForm() {
     // Functions for the modal
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
-
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -1,6 +1,10 @@
 import styles from "./Error.module.css";
 import { Link, useRouteError } from "react-router-dom"
 
+/**
+ * Function component Error - Represents an error page component.
+ * @returns {JSX.Element} The rendered Error component.
+ */
 export default function Error() {
     const error = useRouteError();
     return (
