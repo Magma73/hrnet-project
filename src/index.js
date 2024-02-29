@@ -1,8 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store, persistor } from './store/store';
-import { PersistGate } from 'redux-persist/integration/react';
+import { store } from './store/store';
 import App from './App';
 
 const styles = {
@@ -24,11 +23,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <div style={styles.body}>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <Suspense fallback={<div>Loading</div>}>
-            <App />
-          </Suspense>
-        </PersistGate>
+        <Suspense fallback={<div>Loading</div>}>
+          <App />
+        </Suspense>
       </Provider>
     </div>
   </React.StrictMode>

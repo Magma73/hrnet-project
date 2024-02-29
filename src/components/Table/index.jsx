@@ -1,5 +1,7 @@
 import "./Table.module.css";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import mockData from "../../__mocks__/mockedDatas";
 
 import {
     createColumnHelper,
@@ -52,12 +54,24 @@ const columns = [
 ];
 
 export default function TableComponent() {
-    const employees = useSelector(state => state.employees);
+    // const employees = useSelector(state => state.employees);
+    // console.log(employees);
 
+    // const data = employees;
+    // console.log(data);
 
+    // const data = localStorage.getItem('employeeData');
+    const [data, setData] = useState([]);
 
-    const data = employees;
-
+    useEffect(() => {
+        const storedData = localStorage.getItem('employeeData');
+        if (storedData) {
+            const parsedData = JSON.parse(storedData);
+            setData(parsedData.employees);
+        } else {
+            setData(mockData);
+        }
+    }, []);
 
     const table = useReactTable({
         data,

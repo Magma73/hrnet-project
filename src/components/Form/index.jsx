@@ -3,6 +3,7 @@ import React, { useState, lazy, Suspense } from "react";
 import { useDispatch } from 'react-redux';
 import { addEmployeeInfos } from '../../slices/employeeInfos';
 import states from '../../data/states';
+import { store } from "../../store/store";
 
 const Fieldset = lazy(() => import('../../components/Fieldset'));
 const InputWithLabel = lazy(() => import('../../components/InputWithLabel'));
@@ -68,8 +69,12 @@ export default function EmployeeForm() {
 
         // Dispatch redux action with employee datas
         dispatch(addEmployeeInfos(employeeData));
+        // localStorage.setItem('employeeData', JSON.stringify(employeeData));
+        localStorage.setItem('employeeData', JSON.stringify(store.getState()));
         openModal();
     }
+
+    console.log("localStorage : ", localStorage);
 
     return (
         <form
