@@ -1,5 +1,4 @@
 import "./Table.module.css";
-import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import {
@@ -55,9 +54,6 @@ const columns = [
 export default function TableComponent() {
     const employees = useSelector(state => state.employees);
 
-    // useEffect(() => {
-    //     // Vous pouvez ajouter des effets secondaires ici si nécessaire
-    // }, [employees]);
 
 
     const data = employees;
