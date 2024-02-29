@@ -21,7 +21,7 @@ export default function ModalComponent({ isOpen, onRequestClose, onClick }) {
                 isOpen={isOpen}
                 onRequestClose={onRequestClose}>
                 <div className={styles.containerInformations}>
-                    <h2>Employee Created!</h2>
+                    <h2 className={styles.h2}>Employee Created!</h2>
                     <button
                         className={styles.btn}
                         onClick={onClick}

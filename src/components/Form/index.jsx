@@ -33,7 +33,7 @@ export default function EmployeeForm() {
     maxDate.setFullYear(maxDate.getFullYear() - 18);
 
     const minStartDate = new Date();
-    minStartDate.setDate(minStartDate.getDate() + 7);
+    minStartDate.setDate(minStartDate.getDate());
 
     const optionsStates = states.map(state => ({
         value: state.abbreviation,
@@ -41,11 +41,11 @@ export default function EmployeeForm() {
     }));
 
     const optionsDepartement = [
-        { value: 'sales', label: 'Sales' },
-        { value: 'marketing', label: 'Marketing' },
-        { value: 'engineering', label: 'Engineering' },
-        { value: 'human resources', label: 'Human Resources' },
-        { value: 'legal', label: 'Legal' },
+        { value: 'Sales', label: 'Sales' },
+        { value: 'Marketing', label: 'Marketing' },
+        { value: 'Engineering', label: 'Engineering' },
+        { value: 'Human Resources', label: 'Human Resources' },
+        { value: 'Legal', label: 'Legal' },
     ];
 
     // Functions for the modal

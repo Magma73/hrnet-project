@@ -1,0 +1,17 @@
+.container{
+    display: flex;
+    /* flex-direction: column; */
+}
+table {
+    width: 100%;
+    max-width: 915px;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: none;
+    padding: 8px; /* Ajoutez un peu de marge pour l'apparence */
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Gris clair pour les lignes paires */
+}
