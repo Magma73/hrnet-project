@@ -1,0 +1,18 @@
+.form{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    max-width:390px;
+    margin:auto;
+    margin-bottom:16px;
+}
+.btn{
+    width:100%;
+    max-width:90px;
+    margin: 10px auto;
+    cursor:pointer;
+}
+.errorMessage{
+    text-align:center;
+    color: red;
+}

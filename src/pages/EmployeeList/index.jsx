@@ -1,18 +1,22 @@
-import styled from 'styled-components'
+import styles from "./EmployeeList.module.css";
 import { Link } from "react-router-dom"
+import { Outlet } from 'react-router-dom';
 
-const Main = styled.main`
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-`
+// import storage from 'redux-persist/lib/storage'
 
-const EmployeeList = () => {
+/**
+ * Function component EmployeeList - Represent the EmployeeList Page
+ * @returns {JSX.Element} The rendered EmployeeList component.
+ */
+export default function EmployeeList() {
+    // console.log(storage);
     return (
-        <Main>
-            <Link to="/">Home</Link>
-        </Main>
+        <div>
+            <h1 className={styles.h1}>Employee Page</h1>
+            <main className={styles.main}>
+                <Link to="/">Home</Link>
+                <Outlet />
+            </main>
+        </div>
     );
 };
-
-export default EmployeeList
