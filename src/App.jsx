@@ -2,8 +2,8 @@ import React, { lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './routes/root';
 import Home from './pages/Home';
+import EmployeeList from './pages/EmployeeList';
 
-const EmployeeList = lazy(() => import('./pages/EmployeeList'));
 const Error = lazy(() => import('./pages/Error'));
 
 const router = createBrowserRouter([
