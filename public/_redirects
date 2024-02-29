@@ -1,0 +1,4 @@
+[[redirects]]
+from = "/employeelist"
+to = "/employee-list"
+status = 200
