@@ -11,10 +11,10 @@ export default function Home() {
 
     return (
         <div>
-            <h1 className={styles.h1}>HR Net</h1>
+            <h1 className={styles.h1} aria-level="1">HR Net</h1>
             <section className={styles.section}>
                 <Link to="/employeelist" rel="preload">View Current Employees</Link>
-                <h2 className={styles.h2}>Create Employee</h2>
+                <h2 className={styles.h2} aria-level="2">Create Employee</h2>
 
                 <Suspense fallback={<div>Loading</div>}>
                     <EmployeeForm />
