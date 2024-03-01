@@ -19,14 +19,22 @@ const styles = {
   },
 };
 
+// ReactDOM.createRoot(document.getElementById('root')).render(
+//   <React.StrictMode>
+//     <div style={styles.body}>
+//       <Provider store={store}>
+//         {/* <Suspense fallback={<div>Loading</div>}> */}
+//           <App />
+//         {/* </Suspense> */}
+//       </Provider>
+//     </div>
+//   </React.StrictMode>
+// );
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <div style={styles.body}>
-      <Provider store={store}>
-        <Suspense fallback={<div>Loading</div>}>
-          <App />
-        </Suspense>
-      </Provider>
-    </div>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
