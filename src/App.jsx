@@ -9,6 +9,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    errorElement: <Error />
   },
   {
     path: '/employeelist',
@@ -17,14 +18,7 @@ const router = createBrowserRouter([
         <EmployeeList />
       </Suspense>
     ),
-  },
-  {
-    path: '*',
-    element: (
-      <Suspense fallback={<div>Loading</div>}>
-        <Error />
-      </Suspense>
-    ),
+    errorElement: <Error />
   },
 ]);
 
