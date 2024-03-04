@@ -18,7 +18,11 @@ const router = createBrowserRouter([
         <EmployeeList />
       </Suspense>
     ),
-    errorElement: <Error />
+    errorElement: (
+      <Suspense fallback={<div>Loading</div>}>
+        <Error />
+      </Suspense>
+    )
   },
 ]);
 

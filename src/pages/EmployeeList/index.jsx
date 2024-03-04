@@ -2,6 +2,7 @@ import styles from "./EmployeeList.module.css";
 import { Link } from "react-router-dom"
 import TableComponent from "../../components/Table";
 import React from "react";
+import { Outlet } from "react-router-dom";
 
 
 /**
@@ -17,6 +18,8 @@ export default function EmployeeList() {
                 <Link to="/">Home</Link>
                 <TableComponent />
             </main>
+            <Outlet />
         </div>
+
     );
 };

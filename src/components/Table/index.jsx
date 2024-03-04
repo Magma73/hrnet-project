@@ -1,82 +1,70 @@
-import "./Table.module.css";
 // import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import mockData from "../../__mocks__/mockedDatas";
-
+import React from "react";
+import { useEffect, useState, useMemo } from "react";
 import {
     createColumnHelper,
     flexRender,
     getCoreRowModel,
+    getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table';
+import mockData from "../../__mocks__/mockedDatas";
+import "./Table.module.css";
 
 
 const columnHelper = createColumnHelper();
 
-
-const columns = [
-    columnHelper.accessor('first-name', {
-        header: () => 'First Name',
-        cell: info => info.getValue(),
-    }),
-    columnHelper.accessor('last-name', {
-        header: () => 'Last Name',
-        cell: info => info.getValue(),
-    }),
-    columnHelper.accessor('start-date', {
-        header: () => 'Start Date',
-        cell: info => info.getValue(),
-    }),
-    columnHelper.accessor('department', {
-        header: () => 'Department',
-        cell: info => info.getValue(),
-    }),
-    columnHelper.accessor('date-of-birth', {
-        header: () => 'Date of Birth',
-        cell: info => info.getValue(),
-    }),
-    columnHelper.accessor('street', {
-        header: () => 'Street',
-        cell: info => info.getValue(),
-    }),
-    columnHelper.accessor('city', {
-        header: () => 'City',
-        cell: info => info.getValue(),
-    }),
-    columnHelper.accessor('state', {
-        header: () => 'State',
-        cell: info => info.getValue(),
-    }),
-    columnHelper.accessor('zip-code', {
-        header: () => 'Zip Code',
-        cell: info => info.getValue(),
-    }),
-];
-
+/**
+ * Function component Table - Represent the Table Component
+ * @returns {JSX.Element} The rendered Table component.
+ */
 export default function TableComponent() {
-    // const employees = useSelector(state => state.employees);
-    // console.log(employees);
-
-    // const data = employees;
-    // console.log(data);
-
-    // const data = localStorage.getItem('employeeData');
     const [data, setData] = useState([]);
+    const [sorting, setSorting] = useState([]);
+
 
     useEffect(() => {
         const storedData = localStorage.getItem('employeeData');
+        console.log(storedData);
         if (storedData) {
             const parsedData = JSON.parse(storedData);
-            setData(parsedData.employees);
+            setData(parsedData.employeeInfos.employees);
         } else {
             setData(mockData);
         }
     }, []);
 
+
+    /**
+ * Generates columns dynamically based on data keys.
+ * @param {Array} data - Data array
+ * @returns {Array} - Array of column definitions
+ */
+    function generateColumns(data) {
+        if (!data || data.length === 0) return [];
+        console.log(data);
+        const columns = Object.keys(data[0]).map(key => {
+            return columnHelper.accessor(key, {
+                header: () => key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
+                cell: info => info.row.original[key],
+            });
+        });
+
+        return columns;
+    }
+
+    // Initialize table using useReactTable hook
     const table = useReactTable({
         data,
-        columns,
+        columns: useMemo(() => generateColumns(data), [data]),
+        // columns,
+        state: {
+            sorting,
+        },
+        onSortingChange: setSorting,
         getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel(),
+        debugTable: true,
     });
 
     return (
@@ -85,29 +73,54 @@ export default function TableComponent() {
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
                         <tr key={headerGroup.id}>
-                            {headerGroup.headers.map(header => (
-                                <th key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                            header.column.columnDef.header,
-                                            header.getContext()
+                            {headerGroup.headers.map(header => {
+                                return (
+                                    <th key={header.id} colSpan={header.colSpan}>
+                                        {header.isPlaceholder ? null : (
+                                            <div
+                                                {...{
+                                                    className: header.column.getCanSort()
+                                                        ? 'cursor-pointer select-none'
+                                                        : '',
+                                                    onClick: header.column.getToggleSortingHandler(),
+                                                }}
+                                            >
+                                                {flexRender(
+                                                    header.column.columnDef.header,
+                                                    header.getContext()
+                                                )}
+                                                {{
+                                                    asc: ' 🔼',
+                                                    desc: ' 🔽',
+                                                }[header.column.getIsSorted() ? 'desc' : 'asc'] ?? null}
+                                            </div>
                                         )}
-                                </th>
-                            ))}
+                                    </th>
+                                )
+                            })}
                         </tr>
                     ))}
                 </thead>
                 <tbody>
-                    {table.getRowModel().rows.map(row => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map(cell => (
-                                <td key={cell.id}>
-                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
+                    {table
+                        .getRowModel()
+                        .rows.slice(0, 10)
+                        .map(row => {
+                            return (
+                                <tr key={row.id}>
+                                    {row.getVisibleCells().map(cell => {
+                                        return (
+                                            <td key={cell.id}>
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext()
+                                                )}
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                            )
+                        })}
                 </tbody>
             </table>
             <div className="h-4" />

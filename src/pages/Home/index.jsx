@@ -10,7 +10,7 @@ const EmployeeForm = lazy(() => import('../../components/Form'));
 export default function Home() {
 
     return (
-        <div>
+        <div className={styles.container} >
             <h1 className={styles.h1} aria-level="1">HR Net</h1>
             <section className={styles.section}>
                 <Link to="/employeelist">View Current Employees</Link>
