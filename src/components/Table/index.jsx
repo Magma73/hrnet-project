@@ -1,4 +1,3 @@
-// import { useSelector } from "react-redux";
 import React from "react";
 import { useEffect, useState, useMemo } from "react";
 import {
@@ -57,7 +56,6 @@ export default function TableComponent() {
     const table = useReactTable({
         data,
         columns: useMemo(() => generateColumns(data), [data]),
-        // columns,
         state: {
             sorting,
         },
