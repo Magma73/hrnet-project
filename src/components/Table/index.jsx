@@ -8,7 +8,7 @@ import {
     useReactTable,
 } from '@tanstack/react-table';
 import mockData from "../../__mocks__/mockedDatas";
-import "./Table.module.css";
+// import "./Table.module.css";
 
 
 const columnHelper = createColumnHelper();
@@ -21,10 +21,8 @@ export default function TableComponent() {
     const [data, setData] = useState([]);
     const [sorting, setSorting] = useState([]);
 
-
     useEffect(() => {
         const storedData = localStorage.getItem('employeeData');
-        console.log(storedData);
         if (storedData) {
             const parsedData = JSON.parse(storedData);
             setData(parsedData.employeeInfos.employees);
@@ -87,10 +85,12 @@ export default function TableComponent() {
                                                     header.column.columnDef.header,
                                                     header.getContext()
                                                 )}
-                                                {{
-                                                    asc: ' 🔼',
-                                                    desc: ' 🔽',
-                                                }[header.column.getIsSorted() ? 'desc' : 'asc'] ?? null}
+                                                {header.column.getCanSort() && (
+                                                    <>
+                                                        {header.column.getIsSorted() === 'desc' && ' 🔽'}
+                                                        {header.column.getIsSorted() === 'asc' && ' 🔼'}
+                                                    </>
+                                                )}
                                             </div>
                                         )}
                                     </th>
