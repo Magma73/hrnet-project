@@ -69,7 +69,6 @@ export default function EmployeeForm() {
 
         // Dispatch redux action with employee datas
         dispatch(addEmployeeInfos(employeeData));
-        // localStorage.setItem('employeeData', JSON.stringify(employeeData));
         localStorage.setItem('employeeData', JSON.stringify(store.getState()));
         openModal();
     }
