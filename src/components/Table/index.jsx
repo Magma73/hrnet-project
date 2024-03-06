@@ -50,6 +50,13 @@ export default function TableComponent() {
         return columns;
     }
 
+    /**
+ * Filter function for fuzzy search.
+ * @param {Object} row - Row object.
+ * @param {string} columnId - Column ID.
+ * @param {string} filterValue - Filter value.
+ * @returns {boolean} Whether the row matches the filter criteria.
+ */
     function fuzzyFilter(row, columnId, filterValue) {
         return row.getValue(columnId)
             .toString()

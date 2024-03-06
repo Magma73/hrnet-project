@@ -1,25 +1,25 @@
 const mockData = [
     {
-        "first-name": "John",
+        "first-name": "Yoyo",
         "last-name": "Doe",
-        "start-date": "2022-01-01",
+        "start-date": "2023-01-01",
         "department": "Engineering",
-        "date-of-birth": "1990-05-15",
-        "street": "123 Main Street",
+        "date-of-birth": "1999-05-15",
+        "street": "456 Main Street",
         "city": "Anytown",
         "state": "NY",
         "zip-code": "12345"
     },
     {
-        "first-name": "Jane",
+        "first-name": "Janis",
         "last-name": "Doe",
-        "start-date": "2022-02-01",
+        "start-date": "2010-02-01",
         "department": "Marketing",
-        "date-of-birth": "1985-10-20",
-        "street": "456 Elm Street",
-        "city": "Otherville",
+        "date-of-birth": "1982-10-20",
+        "street": "256 Oups Street",
+        "city": "Motorville",
         "state": "CA",
-        "zip-code": "54321"
+        "zip-code": "56321"
     },
     {
         "first-name": "Michael",
