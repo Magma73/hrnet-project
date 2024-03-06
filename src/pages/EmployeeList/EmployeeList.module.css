@@ -2,9 +2,18 @@
     display: flex;
     flex-direction:column;
     align-items: center;
+    margin-top:20px;
 }
-
+.container{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
 .h1{
-    text-align:center;
+    max-width: fit-content;
+    text-align: center;
     font-size: 2em;
+}
+.homeLink{
+    margin-top:20px;
 }
