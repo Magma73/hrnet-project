@@ -15,6 +15,33 @@ import styles from "./Table.module.css";
 
 const columnHelper = createColumnHelper();
 
+    function generateColumns(data) {
+        if (!data || data.length === 0) return [];
+        const columns = Object.keys(data[0]).map(key => {
+            return columnHelper.accessor(key, {
+                header: () => key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
+                cell: info => info.row.original[key],
+            });
+        });
+
+        return columns;
+    }
+
+/**
+* Filter function for fuzzy search.
+* @param {Object} row - Row object.
+* @param {string} columnId - Column ID.
+* @param {string} filterValue - Filter value.
+* @returns {boolean} Whether the row matches the filter criteria.
+*/
+function fuzzyFilter(row, columnId, filterValue) {
+    return row.getValue(columnId)
+        .toString()
+        .toLowerCase()
+        .includes(filterValue.toString().toLowerCase());
+}
+
+
 /**
  * Function component Table - Represent the Table Component
  * @returns {JSX.Element} The rendered Table component.
@@ -50,36 +77,13 @@ export default function TableComponent() {
     //     return columns;
     // }
 
-    const columns = useMemo(() => {
-        if (!data || data.length === 0) return [];
-        return Object.keys(data[0]).map(key => {
-            return columnHelper.accessor(key, {
-                header: () => key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
-                cell: info => info.row.original[key],
-            });
-        });
-    }, [data]);
-
-    /**
- * Filter function for fuzzy search.
- * @param {Object} row - Row object.
- * @param {string} columnId - Column ID.
- * @param {string} filterValue - Filter value.
- * @returns {boolean} Whether the row matches the filter criteria.
- */
-    function fuzzyFilter(row, columnId, filterValue) {
-        return row.getValue(columnId)
-            .toString()
-            .toLowerCase()
-            .includes(filterValue.toString().toLowerCase());
-    }
 
     // Initialize table using useReactTable hook
     const table = useReactTable({
         data,
-        // columns: useMemo(() => generateColumns(data), [data]),
+        columns: useMemo(() => generateColumns(data), [data]),
         // columns: generateColumns(data),
-        columns,
+        // columns,
         filterFns: {
             fuzzy: fuzzyFilter,
         },
