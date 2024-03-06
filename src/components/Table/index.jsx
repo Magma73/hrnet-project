@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState, useMemo, lazy, Suspense } from "react";
+import { useEffect, useState, useMemo } from "react";
 import {
     createColumnHelper,
     flexRender,
@@ -9,10 +9,9 @@ import {
     useReactTable,
 } from '@tanstack/react-table';
 import mockData from "../../__mocks__/mockedDatas";
-// import DebouncedInput from "./DebouncedInput";
+import DebouncedInput from "./DebouncedInput";
 import styles from "./Table.module.css";
 
-const DebouncedInput = lazy(() => import('./DebouncedInput'));
 
 const columnHelper = createColumnHelper();
 
@@ -92,15 +91,13 @@ export default function TableComponent() {
     return (
         <div >
             <div className={styles.containerInputs}>
-                <Suspense fallback={<div>Loading</div>}>
-                    <DebouncedInput
-                        value={globalFilter ?? ''}
-                        id="globalFilter"
-                        htmlFor="globalFilter"
-                        label="Search : "
-                        onChange={value => setGlobalFilter(value)}
-                    />
-                </Suspense>
+                <DebouncedInput
+                    value={globalFilter ?? ''}
+                    id="globalFilter"
+                    htmlFor="globalFilter"
+                    label="Search : "
+                    onChange={value => setGlobalFilter(value)}
+                />
             </div>
             <div />
             <table className={styles.table}>
