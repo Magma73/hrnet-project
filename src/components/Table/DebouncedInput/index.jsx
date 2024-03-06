@@ -20,7 +20,7 @@ export default function DebouncedInput({ value: initialValue, id, htmlFor, label
         }, debounce);
 
         return () => clearTimeout(timeout);
-    }, [value]);
+    }, [value, debounce, onChange]);
 
     /**
  * Handles the value change of the input.
