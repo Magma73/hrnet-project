@@ -38,17 +38,27 @@ export default function TableComponent() {
  * @param {Array} data - Data array
  * @returns {Array} - Array of column definitions
  */
-    function generateColumns(data) {
+    // function generateColumns(data) {
+    //     if (!data || data.length === 0) return [];
+    //     const columns = Object.keys(data[0]).map(key => {
+    //         return columnHelper.accessor(key, {
+    //             header: () => key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
+    //             cell: info => info.row.original[key],
+    //         });
+    //     });
+
+    //     return columns;
+    // }
+
+    const columns = useMemo(() => {
         if (!data || data.length === 0) return [];
-        const columns = Object.keys(data[0]).map(key => {
+        return Object.keys(data[0]).map(key => {
             return columnHelper.accessor(key, {
                 header: () => key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
                 cell: info => info.row.original[key],
             });
         });
-
-        return columns;
-    }
+    }, [data]);
 
     /**
  * Filter function for fuzzy search.
@@ -67,7 +77,9 @@ export default function TableComponent() {
     // Initialize table using useReactTable hook
     const table = useReactTable({
         data,
-        columns: useMemo(() => generateColumns(data), [data]),
+        // columns: useMemo(() => generateColumns(data), [data]),
+        // columns: generateColumns(data),
+        columns,
         filterFns: {
             fuzzy: fuzzyFilter,
         },
@@ -99,7 +111,7 @@ export default function TableComponent() {
                     onChange={value => setGlobalFilter(value)}
                 />
             </div>
-            <div />
+
             <table className={styles.table}>
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
@@ -156,7 +168,7 @@ export default function TableComponent() {
                         })}
                 </tbody>
             </table>
-            <div />
+
         </div>
     );
 };
