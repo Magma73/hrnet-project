@@ -5,9 +5,11 @@ import {
     flexRender,
     getCoreRowModel,
     getSortedRowModel,
+    getFilteredRowModel,
     useReactTable,
 } from '@tanstack/react-table';
 import mockData from "../../__mocks__/mockedDatas";
+import DebouncedInput from "./DebouncedInput";
 import styles from "./Table.module.css";
 
 
@@ -19,24 +21,16 @@ const columnHelper = createColumnHelper();
  */
 export default function TableComponent() {
     const [data, setData] = useState([]);
-    const [hasDataChanged, setHasDataChanged] = useState(false);
     const [sorting, setSorting] = useState([]);
+    const [globalFilter, setGlobalFilter] = useState('')
 
     console.log("data : ", data);
-    console.log("hasDataChanged : ", hasDataChanged)
     console.log("sorting : ", sorting)
 
-    // useEffect(() => {
-    //     const storedData = localStorage.getItem('employeeData');
-    //     const initialData = storedData ? JSON.parse(storedData).employeeInfos.employees : mockData;
-    //     setData(initialData);
-    // }, []);
-
-    // Set initial data on first render
     useEffect(() => {
         const storedData = localStorage.getItem('employeeData');
-        const initialDataFromStorage = storedData ? JSON.parse(storedData).employeeInfos.employees : mockData;
-        setData(initialDataFromStorage);
+        const initialData = storedData ? JSON.parse(storedData).employeeInfos.employees : mockData;
+        setData(initialData);
     }, []);
 
     /**
@@ -56,29 +50,49 @@ export default function TableComponent() {
         return columns;
     }
 
+    function fuzzyFilter(row, columnId, filterValue) {
+        return row.getValue(columnId)
+            .toString()
+            .toLowerCase()
+            .includes(filterValue.toString().toLowerCase());
+    }
+
     // Initialize table using useReactTable hook
     const table = useReactTable({
         data,
         columns: useMemo(() => generateColumns(data), [data]),
+        filterFns: {
+            fuzzy: fuzzyFilter,
+        },
         state: {
             sorting,
+            globalFilter,
         },
         onSortingChange: setSorting,
-        getCoreRowModel: getCoreRowModel(),
+        onGlobalFilterChange: setGlobalFilter,
+        globalFilterFn: fuzzyFilter,
+        getCoreRowModel: getCoreRowModel({
+            filterFn: fuzzyFilter,
+        }),
+        getFilteredRowModel: getFilteredRowModel(),
         getSortedRowModel: getSortedRowModel(),
-        // debugTable: true,
+        debugTable: true,
+        debugHeaders: true,
+        debugColumns: true,
     });
-
-
-    useEffect(() => {
-        const storedData = localStorage.getItem('employeeData');
-        const initialDataFromStorage = storedData ? JSON.parse(storedData).employeeInfos.employees : mockData;
-        setHasDataChanged(JSON.stringify(initialDataFromStorage) !== JSON.stringify(data));
-    }, [data]);
-
 
     return (
         <div className="p-2">
+            <div className={styles.containerInputs}>
+                <DebouncedInput
+                    value={globalFilter ?? ''}
+                    id="globalFilter"
+                    htmlFor="globalFilter"
+                    label="Search : "
+                    onChange={value => setGlobalFilter(value)}
+                />
+            </div>
+            <div className="h-2" />
             <table className={styles.table}>
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (

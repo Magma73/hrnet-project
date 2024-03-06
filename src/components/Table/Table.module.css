@@ -1,3 +1,8 @@
+.containerInputs{
+  display:flex;
+  justify-content: flex-end;
+  margin:10px 0;
+}
 .table {
     width: 100%;
     max-width: 915px;
