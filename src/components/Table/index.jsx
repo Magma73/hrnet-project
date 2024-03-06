@@ -90,7 +90,7 @@ export default function TableComponent() {
     });
 
     return (
-        <div className="p-2">
+        <div >
             <div className={styles.containerInputs}>
                 <Suspense fallback={<div>Loading</div>}>
                     <DebouncedInput
@@ -102,7 +102,7 @@ export default function TableComponent() {
                     />
                 </Suspense>
             </div>
-            <div className="h-2" />
+            <div />
             <table className={styles.table}>
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
@@ -159,7 +159,7 @@ export default function TableComponent() {
                         })}
                 </tbody>
             </table>
-            <div className="h-4" />
+            <div />
         </div>
     );
 };
