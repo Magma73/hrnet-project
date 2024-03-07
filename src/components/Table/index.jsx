@@ -45,7 +45,6 @@ function fuzzyFilter(row, columnId, filterValue) {
         .includes(filterValue.toString().toLowerCase());
 }
 
-
 /**
  * Function component Table - Represent the Table Component
  * @returns {JSX.Element} The rendered Table component.
