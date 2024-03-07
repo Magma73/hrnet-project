@@ -11,7 +11,6 @@ import mockData from "../../__mocks__/mockedDatas";
 import DebouncedInput from "./DebouncedInput";
 import styles from "./Table.module.css";
 
-
 const columnHelper = createColumnHelper();
 
 /**
