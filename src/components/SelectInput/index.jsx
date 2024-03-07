@@ -1,5 +1,5 @@
-import styles from "./Select.module.css";
 import Select from 'react-select';
+import styles from "./Select.module.css";
 
 /**
  * Function component SelectComponent - Represents a select input component.

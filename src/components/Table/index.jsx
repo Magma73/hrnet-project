@@ -1,17 +1,49 @@
-import React from "react";
 import { useEffect, useState, useMemo } from "react";
 import {
     createColumnHelper,
     flexRender,
     getCoreRowModel,
     getSortedRowModel,
+    getFilteredRowModel,
     useReactTable,
 } from '@tanstack/react-table';
 import mockData from "../../__mocks__/mockedDatas";
-import "./Table.module.css";
-
+import DebouncedInput from "./DebouncedInput";
+import styles from "./Table.module.css";
 
 const columnHelper = createColumnHelper();
+
+/**
+* Generates columns dynamically based on data keys.
+* @param {Array} data - Data array
+* @returns {Array} - Array of column definitions
+*/
+function generateColumns(data) {
+    if (!data || data.length === 0) return [];
+    const columns = Object.keys(data[0]).map(key => {
+        return columnHelper.accessor(key, {
+            header: () => key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
+            cell: info => info.row.original[key],
+        });
+    });
+
+    return columns;
+}
+
+/**
+* Filter function for fuzzy search.
+* @param {Object} row - Row object.
+* @param {string} columnId - Column ID.
+* @param {string} filterValue - Filter value.
+* @returns {boolean} Whether the row matches the filter criteria.
+*/
+function fuzzyFilter(row, columnId, filterValue) {
+    return row.getValue(columnId)
+        .toString()
+        .toLowerCase()
+        .includes(filterValue.toString().toLowerCase());
+}
+
 
 /**
  * Function component Table - Represent the Table Component
@@ -20,60 +52,60 @@ const columnHelper = createColumnHelper();
 export default function TableComponent() {
     const [data, setData] = useState([]);
     const [sorting, setSorting] = useState([]);
+    const [globalFilter, setGlobalFilter] = useState('')
 
+    console.log("data : ", data);
+    console.log("sorting : ", sorting)
 
     useEffect(() => {
         const storedData = localStorage.getItem('employeeData');
-        console.log(storedData);
-        if (storedData) {
-            const parsedData = JSON.parse(storedData);
-            setData(parsedData.employeeInfos.employees);
-        } else {
-            setData(mockData);
-        }
+        const initialData = storedData ? JSON.parse(storedData).employeeInfos.employees : mockData;
+        setData(initialData);
     }, []);
-
-
-    /**
- * Generates columns dynamically based on data keys.
- * @param {Array} data - Data array
- * @returns {Array} - Array of column definitions
- */
-    function generateColumns(data) {
-        if (!data || data.length === 0) return [];
-        console.log(data);
-        const columns = Object.keys(data[0]).map(key => {
-            return columnHelper.accessor(key, {
-                header: () => key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
-                cell: info => info.row.original[key],
-            });
-        });
-
-        return columns;
-    }
 
     // Initialize table using useReactTable hook
     const table = useReactTable({
         data,
         columns: useMemo(() => generateColumns(data), [data]),
+        filterFns: {
+            fuzzy: fuzzyFilter,
+        },
         state: {
             sorting,
+            globalFilter,
         },
         onSortingChange: setSorting,
-        getCoreRowModel: getCoreRowModel(),
+        onGlobalFilterChange: setGlobalFilter,
+        globalFilterFn: fuzzyFilter,
+        getCoreRowModel: getCoreRowModel({
+            filterFn: fuzzyFilter,
+        }),
+        getFilteredRowModel: getFilteredRowModel(),
         getSortedRowModel: getSortedRowModel(),
         debugTable: true,
+        debugHeaders: true,
+        debugColumns: true,
     });
 
     return (
-        <div className="p-2">
-            <table>
+        <div >
+            <div className={styles.containerInputs}>
+                <DebouncedInput
+                    value={globalFilter ?? ''}
+                    id="globalFilter"
+                    htmlFor="globalFilter"
+                    label="Search : "
+                    onChange={value => setGlobalFilter(value)}
+                />
+            </div>
+
+            <table className={styles.table}>
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id}>
+                        <tr key={headerGroup.id} className={styles.tr}>
                             {headerGroup.headers.map(header => {
                                 return (
-                                    <th key={header.id} colSpan={header.colSpan}>
+                                    <th key={header.id} colSpan={header.colSpan} className={styles.th}>
                                         {header.isPlaceholder ? null : (
                                             <div
                                                 {...{
@@ -87,10 +119,12 @@ export default function TableComponent() {
                                                     header.column.columnDef.header,
                                                     header.getContext()
                                                 )}
-                                                {{
-                                                    asc: ' 🔼',
-                                                    desc: ' 🔽',
-                                                }[header.column.getIsSorted() ? 'desc' : 'asc'] ?? null}
+                                                {header.column.getCanSort() && (
+                                                    <span className={styles.arrow}>
+                                                        {header.column.getIsSorted() === 'desc' && ' 🔽'}
+                                                        {header.column.getIsSorted() === 'asc' && ' 🔼'}
+                                                    </span>
+                                                )}
                                             </div>
                                         )}
                                     </th>
@@ -105,10 +139,10 @@ export default function TableComponent() {
                         .rows.slice(0, 10)
                         .map(row => {
                             return (
-                                <tr key={row.id}>
+                                <tr key={row.id} className={styles.tr}>
                                     {row.getVisibleCells().map(cell => {
                                         return (
-                                            <td key={cell.id}>
+                                            <td key={cell.id} className={styles.td}>
                                                 {flexRender(
                                                     cell.column.columnDef.cell,
                                                     cell.getContext()
@@ -121,7 +155,7 @@ export default function TableComponent() {
                         })}
                 </tbody>
             </table>
-            <div className="h-4" />
+
         </div>
     );
 };

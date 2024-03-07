@@ -4,19 +4,19 @@ module.exports = {
   webpack: {
     configure: (webpackConfig, { env, paths }) => {
       if (env === 'production') {
-        // Activer la minimisation du bundle
+        // Enable bundle minimization
         webpackConfig.optimization.minimize = true;
 
-        // Utiliser le plugin Terser pour minimiser les fichiers JavaScript
+        // Use Terser plugin to minimize JavaScript files
         webpackConfig.optimization.minimizer = [
           new TerserPlugin({
-            // Vos options de configuration pour Terser ici
+            // Your Terser configuration options here
             terserOptions: {
               compress: {
-                drop_console: true, // Supprimer les appels console.* dans le code
+                drop_console: true, // Remove console.* calls in the code
               },
               output: {
-                comments: false, // Supprimer les commentaires du code minifié
+                comments: false, // Remove comments from minified code
               },
             },
           }),
