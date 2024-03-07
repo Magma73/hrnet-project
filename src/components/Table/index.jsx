@@ -175,6 +175,16 @@ export default function TableComponent() {
                 </tbody>
             </table>
 
+            <div className={styles.containerFooter}>
+                <span >
+                    Showing&nbsp;
+                    {table.getState().pagination.pageIndex + 1} to{' '}
+                    {data.length}
+                    &nbsp;of&nbsp;
+                    {data.length}
+                </span>
+                &nbsp;entries
+            </div>
         </div>
     );
 };
