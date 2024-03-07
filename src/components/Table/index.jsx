@@ -92,6 +92,23 @@ export default function TableComponent() {
     return (
         <div >
             <div className={styles.containerInputs}>
+                <label>Show&nbsp;
+                    <select
+                        id="paginationSelect"
+                        value={table.getState().pagination.pageSize}
+                        onChange={e => {
+                            table.setPageSize(e.target.value)
+                        }}
+                    >
+                        {[10, 20, 30, 40, 50].map(pageSize => (
+                            <option key={pageSize} value={pageSize}>
+                                {pageSize}
+                            </option>
+                        ))}
+
+                    </select>
+                    &nbsp;entries
+                </label>
                 <DebouncedInput
                     value={globalFilter ?? ''}
                     id="globalFilter"
@@ -157,21 +174,7 @@ export default function TableComponent() {
                         })}
                 </tbody>
             </table>
-            <div>
-                <select
-                    id="paginationSelect"
-                    value={table.getState().pagination.pageSize}
-                    onChange={e => {
-                        table.setPageSize(e.target.value)
-                    }}
-                >
-                    {[10, 20, 30, 40, 50].map(pageSize => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
-                        </option>
-                    ))}
-                </select>
-            </div>
+
         </div>
     );
 };
