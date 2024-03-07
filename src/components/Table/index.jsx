@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect, useState, useMemo } from "react";
 import {
     createColumnHelper,
@@ -15,17 +14,22 @@ import styles from "./Table.module.css";
 
 const columnHelper = createColumnHelper();
 
-    function generateColumns(data) {
-        if (!data || data.length === 0) return [];
-        const columns = Object.keys(data[0]).map(key => {
-            return columnHelper.accessor(key, {
-                header: () => key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
-                cell: info => info.row.original[key],
-            });
+/**
+* Generates columns dynamically based on data keys.
+* @param {Array} data - Data array
+* @returns {Array} - Array of column definitions
+*/
+function generateColumns(data) {
+    if (!data || data.length === 0) return [];
+    const columns = Object.keys(data[0]).map(key => {
+        return columnHelper.accessor(key, {
+            header: () => key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
+            cell: info => info.row.original[key],
         });
+    });
 
-        return columns;
-    }
+    return columns;
+}
 
 /**
 * Filter function for fuzzy search.
@@ -60,30 +64,10 @@ export default function TableComponent() {
         setData(initialData);
     }, []);
 
-    /**
- * Generates columns dynamically based on data keys.
- * @param {Array} data - Data array
- * @returns {Array} - Array of column definitions
- */
-    // function generateColumns(data) {
-    //     if (!data || data.length === 0) return [];
-    //     const columns = Object.keys(data[0]).map(key => {
-    //         return columnHelper.accessor(key, {
-    //             header: () => key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
-    //             cell: info => info.row.original[key],
-    //         });
-    //     });
-
-    //     return columns;
-    // }
-
-
     // Initialize table using useReactTable hook
     const table = useReactTable({
         data,
         columns: useMemo(() => generateColumns(data), [data]),
-        // columns: generateColumns(data),
-        // columns,
         filterFns: {
             fuzzy: fuzzyFilter,
         },
