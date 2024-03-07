@@ -5,6 +5,7 @@ import {
     getCoreRowModel,
     getSortedRowModel,
     getFilteredRowModel,
+    getPaginationRowModel,
     useReactTable,
 } from '@tanstack/react-table';
 import mockData from "../../__mocks__/mockedDatas";
@@ -82,6 +83,7 @@ export default function TableComponent() {
         }),
         getFilteredRowModel: getFilteredRowModel(),
         getSortedRowModel: getSortedRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
         debugTable: true,
         debugHeaders: true,
         debugColumns: true,
@@ -90,6 +92,23 @@ export default function TableComponent() {
     return (
         <div >
             <div className={styles.containerInputs}>
+                <label>Show&nbsp;
+                    <select
+                        id="paginationSelect"
+                        value={table.getState().pagination.pageSize}
+                        onChange={e => {
+                            table.setPageSize(e.target.value)
+                        }}
+                    >
+                        {[10, 20, 30, 40, 50].map(pageSize => (
+                            <option key={pageSize} value={pageSize}>
+                                {pageSize}
+                            </option>
+                        ))}
+
+                    </select>
+                    &nbsp;entries
+                </label>
                 <DebouncedInput
                     value={globalFilter ?? ''}
                     id="globalFilter"
@@ -136,7 +155,7 @@ export default function TableComponent() {
                 <tbody>
                     {table
                         .getRowModel()
-                        .rows.slice(0, 10)
+                        .rows
                         .map(row => {
                             return (
                                 <tr key={row.id} className={styles.tr}>

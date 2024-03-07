@@ -1,11 +1,11 @@
 .containerInputs{
   display:flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin:10px 0;
 }
 .table {
     width: 100%;
-    max-width: 915px;
+    max-width: 954px;
     border-collapse: collapse;
 }
 .td, .th {
