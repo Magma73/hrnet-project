@@ -185,6 +185,7 @@ export default function TableComponent() {
                     </span>
                     &nbsp;entries
                 </div>
+                
                 {table.getPageCount() > 0 && (
                     <div>
                         <span>
