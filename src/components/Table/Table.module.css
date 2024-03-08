@@ -19,5 +19,10 @@
   cursor:pointer;
 }
 .containerFooter{
+  display: flex;
+  justify-content: space-between;
   margin-top:15px;
+}
+.containerPagination{
+  width:40px;
 }
