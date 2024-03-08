@@ -175,14 +175,36 @@ export default function TableComponent() {
             </table>
 
             <div className={styles.containerFooter}>
-                <span >
-                    Showing&nbsp;
-                    {table.getState().pagination.pageIndex + 1} to{' '}
-                    {data.length}
-                    &nbsp;of&nbsp;
-                    {data.length}
-                </span>
-                &nbsp;entries
+                <div >
+                    <span >
+                        Showing&nbsp;
+                        {table.getState().pagination.pageIndex + 1} to{' '}
+                        {data.length}
+                        &nbsp;of&nbsp;
+                        {data.length}
+                    </span>
+                    &nbsp;entries
+                </div>
+                
+                {table.getPageCount() > 0 && (
+                    <div>
+                        <span>
+                            Go to Page:&nbsp;
+                            <input
+                                id="paginationInput"
+                                type="number"
+                                defaultValue={table.getState().pagination.pageIndex + 1}
+                                min="1"
+                                max={table.getPageCount()}
+                                onChange={e => {
+                                    const page = e.target.value ? (e.target.value) - 1 : 0
+                                    table.setPageIndex(page)
+                                }}
+                                className={styles.containerPagination}
+                            />
+                        </span>
+                    </div>
+                )}
             </div>
         </div>
     );
