@@ -1,4 +1,5 @@
 const TerserPlugin = require('terser-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   webpack: {
@@ -18,6 +19,23 @@ module.exports = {
               output: {
                 comments: false, // Remove comments from minified code
               },
+            },
+          }),
+          new UglifyJsPlugin({
+            test: /\.js(\?.*)?$/i,
+            uglifyOptions: {
+              compress: {
+                drop_console: true, // Supprime les instructions console.*
+                drop_debugger: true, // Supprime les instructions debugger
+                pure_funcs: ['console.log'], // Supprime les fonctions pures spécifiées
+                unused: true,
+                dead_code: true,
+              },
+              output: {
+                comments: false, // Supprime les commentaires
+              },
+              sourceMap: false,
+              parallel: true,
             },
           }),
         ];
