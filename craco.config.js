@@ -34,7 +34,7 @@ module.exports = {
               output: {
                 comments: false, // Supprime les commentaires
               },
-              mangle: true,
+              mangle: false,
               sourceMap: false,
               parallel: true,
             },
