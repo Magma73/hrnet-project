@@ -52,7 +52,11 @@ function fuzzyFilter(row, columnId, filterValue) {
 export default function TableComponent() {
     const [data, setData] = useState([]);
     const [sorting, setSorting] = useState([]);
-    const [globalFilter, setGlobalFilter] = useState('')
+    const [globalFilter, setGlobalFilter] = useState('');
+    const [pagination, setPagination] = useState({
+        pageIndex: 0,
+        pageSize: 10,
+    })
 
     console.log("data : ", data);
     console.log("sorting : ", sorting)
@@ -73,6 +77,7 @@ export default function TableComponent() {
         state: {
             sorting,
             globalFilter,
+            pagination,
         },
         onSortingChange: setSorting,
         onGlobalFilterChange: setGlobalFilter,
@@ -83,6 +88,7 @@ export default function TableComponent() {
         getFilteredRowModel: getFilteredRowModel(),
         getSortedRowModel: getSortedRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        onPaginationChange: setPagination,
         debugTable: true,
         debugHeaders: true,
         debugColumns: true,
@@ -94,7 +100,7 @@ export default function TableComponent() {
                 <label>Show&nbsp;
                     <select
                         id="paginationSelect"
-                        value={table.getState().pagination.pageSize}
+                        value={pagination.pageSize}
                         onChange={e => {
                             table.setPageSize(e.target.value)
                         }}
@@ -178,33 +184,49 @@ export default function TableComponent() {
                 <div >
                     <span >
                         Showing&nbsp;
-                        {table.getState().pagination.pageIndex + 1} to{' '}
-                        {data.length}
-                        &nbsp;of&nbsp;
-                        {data.length}
+                        {pagination.pageIndex * pagination.pageSize + 1} to {pagination.pageIndex * pagination.pageSize + pagination.pageSize >= table.getPrePaginationRowModel().rows.length ? table.getPrePaginationRowModel().rows.length : pagination.pageIndex * pagination.pageSize + pagination.pageSize} of{" "}
+                        {table.getPrePaginationRowModel().rows.length}
                     </span>
                     &nbsp;entries
                 </div>
-                
-                {table.getPageCount() > 0 && (
+
+                <div className={styles.containerButton}>
                     <div>
-                        <span>
-                            Go to Page:&nbsp;
-                            <input
-                                id="paginationInput"
-                                type="number"
-                                defaultValue={table.getState().pagination.pageIndex + 1}
-                                min="1"
-                                max={table.getPageCount()}
-                                onChange={e => {
-                                    const page = e.target.value ? (e.target.value) - 1 : 0
-                                    table.setPageIndex(page)
-                                }}
-                                className={styles.containerPagination}
-                            />
-                        </span>
+                        <button
+                            onClick={() => table.previousPage()}
+                            disabled={!table.getCanPreviousPage()}
+                        >
+                            {'Previous'}
+                        </button>
                     </div>
-                )}
+                    {table.getPageCount() > 0 && (
+                        <div>
+                            <span>
+                                <input
+                                    id="paginationInput"
+                                    type="number"
+                                    defaultValue={pagination.pageIndex + 1}
+                                    min="1"
+                                    max={table.getPageCount()}
+                                    onChange={e => {
+                                        const page = e.target.value ? (e.target.value) - 1 : 0
+                                        table.setPageIndex(page)
+                                    }}
+                                    className={styles.containerPagination}
+                                />
+                            </span>
+                        </div>
+                    )}
+                    <div>
+
+                        <button
+                            onClick={() => table.nextPage()}
+                            disabled={!table.getCanNextPage()}
+                        >
+                            {'Next'}
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );
