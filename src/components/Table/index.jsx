@@ -206,10 +206,10 @@ export default function TableComponent() {
                     {table.getPageCount() > 0 && (
                         <div>
                             <span>
-                                <label htmlFor="paginationInput"></label>
+                                <label htmlFor="pagination-input" className={styles.hiddenLabel}>Pagination</label>
                                 <input
-                                    id="paginationInput"
-                                    name="paginationInput"
+                                    id="pagination-input"
+                                    name="pagination-input"
                                     type="number"
                                     value={pagination.pageIndex + 1}
                                     min="1"
