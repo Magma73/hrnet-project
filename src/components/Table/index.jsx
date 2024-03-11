@@ -202,15 +202,17 @@ export default function TableComponent() {
                     {table.getPageCount() > 0 && (
                         <div>
                             <span>
+                                <label htmlFor="paginationInput"></label>
                                 <input
                                     id="paginationInput"
+                                    name="paginationInput"
                                     type="number"
-                                    defaultValue={pagination.pageIndex + 1}
+                                    value={pagination.pageIndex + 1}
                                     min="1"
                                     max={table.getPageCount()}
-                                    onChange={e => {
-                                        const page = e.target.value ? (e.target.value) - 1 : 0
-                                        table.setPageIndex(page)
+                                    onChange={(e) => {
+                                        const newPageIndex = parseInt(e.target.value, 10) - 1;
+                                        table.setPageIndex(newPageIndex);
                                     }}
                                     className={styles.containerPagination}
                                 />
