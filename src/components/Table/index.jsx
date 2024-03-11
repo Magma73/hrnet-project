@@ -184,6 +184,10 @@ export default function TableComponent() {
                 <div >
                     <span >
                         Showing&nbsp;
+                        {/*
+                            Displaying the range of rows currently visible,
+                            ensuring the upper limit does not exceed the total number of rows.
+                        */}
                         {pagination.pageIndex * pagination.pageSize + 1} to {pagination.pageIndex * pagination.pageSize + pagination.pageSize >= table.getPrePaginationRowModel().rows.length ? table.getPrePaginationRowModel().rows.length : pagination.pageIndex * pagination.pageSize + pagination.pageSize} of{" "}
                         {table.getPrePaginationRowModel().rows.length}
                     </span>
