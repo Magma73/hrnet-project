@@ -14,7 +14,9 @@ module.exports = {
             // Your Terser configuration options here
             terserOptions: {
               compress: {
-                drop_console: true, // Remove console.* calls in the code
+                drop_console: true,
+                unused: true,
+                dead_code: true, // Remove console.* calls in the code
               },
               output: {
                 comments: false, // Remove comments from minified code
