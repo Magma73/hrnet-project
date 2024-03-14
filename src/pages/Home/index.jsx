@@ -1,6 +1,6 @@
-import styles from "./Home.module.css";
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom"
+import styles from "./Home.module.css";
 
 const EmployeeForm = lazy(() => import('../../components/Form'));
 /**
