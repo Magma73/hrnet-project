@@ -23,7 +23,11 @@ export default function EmployeeForm() {
     const [startDateEntry, setStartDateEntry] = useState(null);
     const [selectedOption, setSelectedOption] = useState(null);
     const [selectedOptionDepartement, setSelectedOptionDepartement] = useState(null);
+    const [lastActiveElement, setLastActiveElement] = useState(null);
+    console.log("lastActiveElement :", lastActiveElement);
+    console.log("document.active : ");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    console.log("isModalOpen :", isModalOpen);
     const [formError, setFormError] = useState('');
 
     // Other constants for date calculations and options
@@ -50,8 +54,19 @@ export default function EmployeeForm() {
     ];
 
     // Functions for the modal
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+    const openModal = () => {
+        console.log("hello ! ");
+        setLastActiveElement(document.activeElement);
+        console.log(lastActiveElement);
+        setIsModalOpen(true);
+        console.log("isModalOpen :", isModalOpen);
+    };
+    const closeModal = () => {
+        setIsModalOpen(false)
+        if (lastActiveElement) {
+            lastActiveElement.focus();
+        }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -194,12 +209,17 @@ export default function EmployeeForm() {
             {formError && <p>{formError}</p>}
 
             <button className={styles.btn} type="submit">Save</button>
+            {/* <button className={styles.btn} onClick={openModal}>Je teste la modale</button> */}
 
             <Suspense fallback={<div>Loading</div>}>
-                <ModalComponent
+                {/* <ModalComponent
                     isOpen={isModalOpen}
                     onRequestClose={closeModal}
                     onClick={closeModal}
+                /> */}
+                <ModalComponent
+                    isOpen={isModalOpen}
+                    closeModal={closeModal}
                 />
             </Suspense>
         </form >
