@@ -1,50 +1,34 @@
-const TerserPlugin = require('terser-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const path = require('path');
+const { whenProd } = require('@craco/craco');
+const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin');
 
 module.exports = {
   webpack: {
-    configure: (webpackConfig, { env, paths }) => {
-      if (env === 'production') {
-        // Enable bundle minimization
-        webpackConfig.optimization.minimize = true;
-
-        // Use Terser plugin to minimize JavaScript files
-        webpackConfig.optimization.minimizer = [
-          new TerserPlugin({
-            // Your Terser configuration options here
-            terserOptions: {
-              compress: {
-                drop_console: true,
-                unused: true,
-                dead_code: true, // Remove console.* calls in the code
-              },
-              output: {
-                comments: false, // Remove comments from minified code
-              },
-            },
-          }),
-          new UglifyJsPlugin({
-            test: /\.js(\?.*)?$/i,
-            uglifyOptions: {
-              compress: {
-                drop_console: true, // Supprime les instructions console.*
-                drop_debugger: true, // Supprime les instructions debugger
-                pure_funcs: ['console.log'], // Supprime les fonctions pures spécifiées
-                unused: true,
-                dead_code: true,
-              },
-              output: {
-                comments: false, // Supprime les commentaires
-              },
-              mangle: true,
-              sourceMap: false,
-              parallel: true,
-            },
-          }),
-        ];
-      }
-
-      return webpackConfig;
+    configure: (webpackConfig) => {
+      return {
+        ...webpackConfig,
+        plugins: [
+          ...webpackConfig.plugins,
+          ...whenProd(
+            () => [
+              new HtmlCriticalWebpackPlugin({
+                base: path.resolve(__dirname, 'build'),
+                src: 'index.html',
+                dest: 'index.html',
+                inline: true,
+                minify: true,
+                extract: true,
+                width: 320,
+                height: 565,
+                penthouse: {
+                  blockJSRequests: false,
+                },
+              }),
+            ],
+            []
+          ),
+        ],
+      };
     },
   },
 };
