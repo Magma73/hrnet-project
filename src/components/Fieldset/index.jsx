@@ -1,6 +1,5 @@
-import styles from "./Fieldset.module.css";
 import React from "react";
-
+import styles from "./Fieldset.module.css";
 /**
  * Function component Fieldset - Represent the Fieldset Component
  * @param {string} legend - The legend of the fieldset.

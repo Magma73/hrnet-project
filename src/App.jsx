@@ -1,7 +1,7 @@
-import * as React from "react";
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
+
 const EmployeeList = lazy(() => import('./pages/EmployeeList'));
 const Error = lazy(() => import('./pages/Error'));
 

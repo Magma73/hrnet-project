@@ -1,6 +1,6 @@
-import styles from "./DatePicker.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import styles from "./DatePicker.module.css";
 
 /**
  * Function component DatePickerComponent - Represents a date picker component.

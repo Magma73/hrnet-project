@@ -1,5 +1,5 @@
+import { Link, useRouteError } from "react-router-dom";
 import styles from "./Error.module.css";
-import { Link, useRouteError } from "react-router-dom"
 
 /**
  * Function component Error - Represents an error page component.

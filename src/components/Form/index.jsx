@@ -1,9 +1,9 @@
-import styles from "./EmployeeForm.module.css";
 import React, { useState, lazy, Suspense } from "react";
 import { useDispatch } from 'react-redux';
 import { addEmployeeInfos } from '../../slices/employeeInfos';
 import states from '../../data/states';
 import { store } from "../../store/store";
+import styles from "./EmployeeForm.module.css";
 
 const Fieldset = lazy(() => import('../../components/Fieldset'));
 const InputWithLabel = lazy(() => import('../../components/InputWithLabel'));
@@ -24,10 +24,7 @@ export default function EmployeeForm() {
     const [selectedOption, setSelectedOption] = useState(null);
     const [selectedOptionDepartement, setSelectedOptionDepartement] = useState(null);
     const [lastActiveElement, setLastActiveElement] = useState(null);
-    // console.log("lastActiveElement :", lastActiveElement);
-    // console.log("document.active : ");
     const [isModalOpen, setIsModalOpen] = useState(false);
-    // console.log("isModalOpen :", isModalOpen);
     const [formError, setFormError] = useState('');
 
     // Other constants for date calculations and options
@@ -55,11 +52,8 @@ export default function EmployeeForm() {
 
     // Functions for the modal
     const openModal = () => {
-        // console.log("hello ! ");
         setLastActiveElement(document.activeElement);
-        // console.log(lastActiveElement);
         setIsModalOpen(true);
-        // console.log("isModalOpen :", isModalOpen);
     };
     const closeModal = () => {
         setIsModalOpen(false)
@@ -87,8 +81,6 @@ export default function EmployeeForm() {
         localStorage.setItem('employeeData', JSON.stringify(store.getState()));
         openModal();
     }
-
-    // console.log("localStorage : ", localStorage);
 
     return (
         <form
@@ -209,14 +201,8 @@ export default function EmployeeForm() {
             {formError && <p>{formError}</p>}
 
             <button className={styles.btn} type="submit">Save</button>
-            {/* <button className={styles.btn} onClick={openModal}>Je teste la modale</button> */}
 
             <Suspense fallback={<div>Loading</div>}>
-                {/* <ModalComponent
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                    onClick={closeModal}
-                /> */}
                 <ModalComponent
                     isOpen={isModalOpen}
                     closeModal={closeModal}
