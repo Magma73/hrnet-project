@@ -1,3 +1,5 @@
+@import url('../../utils/colors.css');
+
 .form{
     display:flex;
     flex-direction:column;
@@ -10,7 +12,12 @@
     width:100%;
     max-width:90px;
     margin: 10px auto;
+    padding:5px;
     cursor:pointer;
+    background: var(--color-btn-bg);
+    color: var(--color-btn-txt);
+    border:none;
+    border-radius: 5px;
 }
 .errorMessage{
     text-align:center;

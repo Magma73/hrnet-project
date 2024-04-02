@@ -1,3 +1,5 @@
+@import url('../../utils/colors.css');
+
 .container{
     display: flex;
     flex-direction:column;
@@ -13,9 +15,11 @@
     max-width: fit-content;
     text-align:center;
     font-size: 2em;
+    color: var(--color-h1);
 }
 .h2{
     max-width: fit-content;
     text-align:center;
     font-size: 2em;
+    color: var(--color-h2);
 }
