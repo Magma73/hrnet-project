@@ -7,7 +7,6 @@ import styles from "./EmployeeList.module.css";
  * @returns {JSX.Element} The rendered EmployeeList component.
  */
 export default function EmployeeList() {
-    // console.log(storage);
     return (
         <div className={styles.container}>
             <h1 className={styles.h1}>Current Employees</h1>
