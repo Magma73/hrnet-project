@@ -46,6 +46,19 @@ function fuzzyFilter(row, columnId, filterValue) {
 }
 
 /**
+ * Format a label by capitalizing the first letter of each word and joining them with spaces.
+ *
+ * @param {string} label - The label to format.
+ * @returns {string} The formatted label.
+ */
+function formatLabel(label) {
+    return label
+        .split('-')
+        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(' ');
+}
+
+/**
  * Function component Table - Represent the Table Component
  * @returns {JSX.Element} The rendered Table component.
  */
@@ -57,9 +70,6 @@ export default function TableComponent() {
         pageIndex: 0,
         pageSize: 10,
     })
-
-    console.log("data : ", data);
-    console.log("sorting : ", sorting)
 
     useEffect(() => {
         const storedData = localStorage.getItem('employeeData');
@@ -95,7 +105,7 @@ export default function TableComponent() {
     });
 
     return (
-        <div >
+        <div className={styles.containerTableComponent}>
             <div className={styles.containerInputs}>
                 <label>Show&nbsp;
                     <select
@@ -126,7 +136,7 @@ export default function TableComponent() {
             <table className={styles.table}>
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id} className={styles.tr}>
+                        <tr key={headerGroup.id} className={styles.tr} >
                             {headerGroup.headers.map(header => {
                                 return (
                                     <th key={header.id} colSpan={header.colSpan} className={styles.th}>
@@ -165,8 +175,10 @@ export default function TableComponent() {
                             return (
                                 <tr key={row.id} className={styles.tr}>
                                     {row.getVisibleCells().map(cell => {
+                                        const columnDef = cell.column.columnDef.accessorKey;
+                                        const formattedLabel = formatLabel(columnDef);
                                         return (
-                                            <td key={cell.id} className={styles.td}>
+                                            <td key={cell.id} className={styles.td} data-label={formattedLabel}>
                                                 {flexRender(
                                                     cell.column.columnDef.cell,
                                                     cell.getContext()
