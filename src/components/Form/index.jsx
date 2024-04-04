@@ -4,11 +4,11 @@ import { addEmployeeInfos } from '../../slices/employeeInfos';
 import states from '../../data/states';
 import { store } from "../../store/store";
 import styles from "./EmployeeForm.module.css";
+import InputWithLabel from "../../components/InputWithLabel";
+import Fieldset from "../../components/Fieldset";
+import DatePickerComponent from "../../components/DatePicker";
+import SelectComponent from "../../components/SelectInput";
 
-const Fieldset = lazy(() => import('../../components/Fieldset'));
-const InputWithLabel = lazy(() => import('../../components/InputWithLabel'));
-const DatePickerComponent = lazy(() => import('../../components/DatePicker'));
-const SelectComponent = lazy(() => import('../../components/SelectInput'));
 const ModalComponent = lazy(() => import('../../components/Modal'));
 
 /**
@@ -89,115 +89,88 @@ export default function EmployeeForm() {
             name="myForm"
             onSubmit={handleSubmit}
         >
-            <Suspense fallback={<div>Loading</div>}>
+            <InputWithLabel
+                htmlFor="first-name"
+                label="First Name"
+                id="first-name"
+                name="first-name"
+                type="text"
+                autoComplete="username"
+            />
+            <InputWithLabel
+                htmlFor="last-name"
+                label="Last Name"
+                id="last-name"
+                name="last-name"
+                type="text"
+            />
+            <DatePickerComponent
+                htmlFor="date-of-birth"
+                label="Date of Birth"
+                id="date-of-birth"
+                name="date-of-birth"
+                type="date"
+                minDate={minDate}
+                maxDate={maxDate}
+                selectedDate={startDateBirth}
+                onChange={(date) => setStartDateBirth(date)}
+            />
+            <DatePickerComponent
+                htmlFor="start-date"
+                label="Start Date"
+                id="start-date"
+                name="start-date"
+                type="date"
+                minDate={minStartDate}
+                selectedDate={startDateEntry}
+                onChange={(date) => setStartDateEntry(date)}
+            />
+            <Fieldset legend="Address">
                 <InputWithLabel
-                    htmlFor="first-name"
-                    label="First Name"
-                    id="first-name"
-                    name="first-name"
+                    htmlFor="street"
+                    label="Street"
+                    id="street"
+                    name="street"
                     type="text"
-                    autoComplete="username"
                 />
-            </Suspense>
-
-            <Suspense fallback={<div>Loading</div>}>
                 <InputWithLabel
-                    htmlFor="last-name"
-                    label="Last Name"
-                    id="last-name"
-                    name="last-name"
+                    htmlFor="city"
+                    label="City"
+                    id="city"
+                    name="city"
                     type="text"
                 />
-            </Suspense>
-
-            <Suspense fallback={<div>Loading</div>}>
-                <DatePickerComponent
-                    htmlFor="date-of-birth"
-                    label="Date of Birth"
-                    id="date-of-birth"
-                    name="date-of-birth"
-                    type="date"
-                    minDate={minDate}
-                    maxDate={maxDate}
-                    selectedDate={startDateBirth}
-                    onChange={(date) => setStartDateBirth(date)}
-                />
-            </Suspense>
-
-            <Suspense fallback={<div>Loading</div>}>
-                <DatePickerComponent
-                    htmlFor="start-date"
-                    label="Start Date"
-                    id="start-date"
-                    name="start-date"
-                    type="date"
-                    minDate={minStartDate}
-                    selectedDate={startDateEntry}
-                    onChange={(date) => setStartDateEntry(date)}
-                />
-            </Suspense>
-
-            <Suspense fallback={<div>Loading</div>}>
-                <Fieldset legend="Address">
-                    <Suspense fallback={<div>Loading</div>}>
-                        <InputWithLabel
-                            htmlFor="street"
-                            label="Street"
-                            id="street"
-                            name="street"
-                            type="text"
-                        />
-                    </Suspense>
-
-                    <Suspense fallback={<div>Loading</div>}>
-                        <InputWithLabel
-                            htmlFor="city"
-                            label="City"
-                            id="city"
-                            name="city"
-                            type="text"
-                        />
-                    </Suspense>
-
-                    <Suspense fallback={<div>Loading</div>}>
-                        <SelectComponent
-                            htmlFor="state"
-                            label="State"
-                            inputId="state"
-                            name="state"
-                            type="text"
-                            defaultValue={selectedOption}
-                            onChange={setSelectedOption}
-                            options={optionsStates}
-                            placeholder="Alabama"
-                        />
-                    </Suspense>
-
-                    <Suspense fallback={<div>Loading</div>}>
-                        <InputWithLabel
-                            htmlFor="zip-code"
-                            label="Zip Code"
-                            id="zip-code"
-                            name="zip-code"
-                            type="number"
-                        />
-                    </Suspense>
-                </Fieldset>
-            </Suspense>
-
-            <Suspense fallback={<div>Loading</div>}>
                 <SelectComponent
-                    htmlFor="department"
-                    label="Department"
-                    inputId="department"
-                    name="department"
+                    htmlFor="state"
+                    label="State"
+                    inputId="state"
+                    name="state"
                     type="text"
-                    defaultValue={selectedOptionDepartement}
-                    onChange={setSelectedOptionDepartement}
-                    options={optionsDepartement}
-                    placeholder="Sales"
+                    defaultValue={selectedOption}
+                    onChange={setSelectedOption}
+                    options={optionsStates}
+                    placeholder="Alabama"
                 />
-            </Suspense>
+                <InputWithLabel
+                    htmlFor="zip-code"
+                    label="Zip Code"
+                    id="zip-code"
+                    name="zip-code"
+                    type="number"
+                />
+            </Fieldset>
+
+            <SelectComponent
+                htmlFor="department"
+                label="Department"
+                inputId="department"
+                name="department"
+                type="text"
+                defaultValue={selectedOptionDepartement}
+                onChange={setSelectedOptionDepartement}
+                options={optionsDepartement}
+                placeholder="Sales"
+            />
             {formError && <p>{formError}</p>}
 
             <button className={styles.btn} type="submit">Save</button>
