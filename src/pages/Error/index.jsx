@@ -9,7 +9,7 @@ export default function Error() {
     const error = useRouteError();
     return (
         <div>
-            <h1 className={styles.h1}>Error Page</h1>
+            <h1 className={styles.h1} aria-level="1">Error Page</h1>
             <main className={styles.main}>
                 <h2 className={styles.h2}>Error {error.status} {error.statusText}</h2>
                 <Link to="/">Back to Home Page</Link>

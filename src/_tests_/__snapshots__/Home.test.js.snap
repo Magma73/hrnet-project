@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a MemoryRouter with initial entry pointing to the home page Then it should render the Home page correctly 1`] = `
+<div
+  className="container"
+>
+  <h1
+    aria-level="1"
+    className="h1"
+  >
+    HR Net
+  </h1>
+  <section
+    className="section"
+  >
+    <a
+      href="/employeelist"
+      onClick={[Function]}
+    >
+      View Current Employees
+    </a>
+    <h2
+      aria-level="2"
+      className="h2"
+    >
+      Create Employee
+    </h2>
+    <div>
+      Loading
+    </div>
+  </section>
+</div>
+`;

@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a MemoryRouter with initial entry pointing to the Employee List page Then it should render the Employee List page correctly 1`] = `
+<div
+  className="container"
+>
+  <h1
+    className="h1"
+  >
+    Current Employees
+  </h1>
+  <main
+    className="main"
+  >
+    <div
+      className="containerTableComponent"
+    >
+      <div
+        className="containerInputs"
+      >
+        <label>
+          Show 
+          <select
+            id="paginationSelect"
+            onChange={[Function]}
+            value={10}
+          >
+            <option
+              value={10}
+            >
+              10
+            </option>
+            <option
+              value={20}
+            >
+              20
+            </option>
+            <option
+              value={30}
+            >
+              30
+            </option>
+            <option
+              value={40}
+            >
+              40
+            </option>
+            <option
+              value={50}
+            >
+              50
+            </option>
+          </select>
+           entries
+        </label>
+        <div>
+          <label
+            htmlFor="globalFilter"
+          >
+            Search : 
+          </label>
+          <input
+            id="globalFilter"
+            onChange={[Function]}
+            value=""
+          />
+        </div>
+      </div>
+      <table
+        className="table"
+      >
+        <thead>
+          <tr
+            className="tr"
+          />
+        </thead>
+        <tbody />
+      </table>
+      <div
+        className="containerFooter"
+      >
+        <div>
+          <span>
+            Showing 
+            1
+             to 
+            0
+             of
+             
+            0
+          </span>
+           entries
+        </div>
+        <div
+          className="containerButton"
+        >
+          <div>
+            <button
+              disabled={true}
+              onClick={[Function]}
+            >
+              Previous
+            </button>
+          </div>
+          <div>
+            <button
+              disabled={true}
+              onClick={[Function]}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a
+      className="homeLink"
+      href="/"
+      onClick={[Function]}
+    >
+      Home
+    </a>
+  </main>
+</div>
+`;
