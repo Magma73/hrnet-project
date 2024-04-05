@@ -16,7 +16,7 @@ import styles from "./DatePicker.module.css";
  * @returns {JSX.Element} The rendered DatePickerComponent component.
  */
 
-export default function DatePickerComponent({ htmlFor, label, id, name, type, minDate, maxDate, selectedDate, onChange }) {
+const DatePickerComponent = ({ htmlFor, label, id, name, type, minDate, maxDate, selectedDate, onChange }) => {
     return (
         <div className={styles.container}>
             <label
@@ -37,3 +37,5 @@ export default function DatePickerComponent({ htmlFor, label, id, name, type, mi
         </div>
     );
 };
+
+export default DatePickerComponent;

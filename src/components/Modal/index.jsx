@@ -1,7 +1,7 @@
 import { Modal } from '@magma73/modal-react';
 import styles from './Modal.module.css';
 
-export default function ModalComponent({ isOpen, closeModal }) {
+const ModalComponent = ({ isOpen, closeModal }) => {
     return (
         <Modal
             isOpen={isOpen}
@@ -15,3 +15,5 @@ export default function ModalComponent({ isOpen, closeModal }) {
         />
     );
 }
+
+export default ModalComponent;

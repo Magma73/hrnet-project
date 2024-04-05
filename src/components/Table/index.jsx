@@ -19,17 +19,15 @@ const columnHelper = createColumnHelper();
 * @param {Array} data - Data array
 * @returns {Array} - Array of column definitions
 */
-function generateColumns(data) {
+const generateColumns = (data) => {
     if (!data || data.length === 0) return [];
-    const columns = Object.keys(data[0]).map(key => {
-        return columnHelper.accessor(key, {
+    return Object.keys(data[0]).map(key => (
+        columnHelper.accessor(key, {
             header: () => key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
             cell: info => info.row.original[key],
-        });
-    });
-
-    return columns;
-}
+        })
+    ));
+};
 
 /**
 * Filter function for fuzzy search.
@@ -38,12 +36,12 @@ function generateColumns(data) {
 * @param {string} filterValue - Filter value.
 * @returns {boolean} Whether the row matches the filter criteria.
 */
-function fuzzyFilter(row, columnId, filterValue) {
+const fuzzyFilter = (row, columnId, filterValue) => {
     return row.getValue(columnId)
         .toString()
         .toLowerCase()
         .includes(filterValue.toString().toLowerCase());
-}
+};
 
 /**
  * Format a label by capitalizing the first letter of each word and joining them with spaces.
@@ -51,18 +49,18 @@ function fuzzyFilter(row, columnId, filterValue) {
  * @param {string} label - The label to format.
  * @returns {string} The formatted label.
  */
-function formatLabel(label) {
+const formatLabel = (label) => {
     return label
         .split('-')
         .map(part => part.charAt(0).toUpperCase() + part.slice(1))
         .join(' ');
-}
+};
 
 /**
  * Function component Table - Represent the Table Component
  * @returns {JSX.Element} The rendered Table component.
  */
-export default function TableComponent() {
+const TableComponent = () => {
     const [data, setData] = useState([]);
     const [sorting, setSorting] = useState([]);
     const [globalFilter, setGlobalFilter] = useState('');
@@ -249,3 +247,4 @@ export default function TableComponent() {
         </div>
     );
 };
+export default TableComponent;

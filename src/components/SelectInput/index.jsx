@@ -14,7 +14,7 @@ import styles from "./Select.module.css";
  * @returns {JSX.Element} The rendered SelectComponent.
  */
 
-export default function SelectComponent({ htmlFor, label, inputId, name, defaultValue, onChange, options, placeholder }) {
+const SelectComponent = ({ htmlFor, label, inputId, name, defaultValue, onChange, options, placeholder }) => {
     return (
         <div className={styles.container}>
             <label className={styles.label} htmlFor={htmlFor}>
@@ -32,3 +32,5 @@ export default function SelectComponent({ htmlFor, label, inputId, name, default
         </div>
     );
 };
+
+export default SelectComponent;

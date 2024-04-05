@@ -11,7 +11,7 @@ import styles from "./InputLabel.module.css";
  * @returns {JSX.Element} The rendered InputWithLabel component.
  */
 
-export default function InputWithLabel({ htmlFor, label, id, name, type, autoComplete }) {
+const InputWithLabel = ({ htmlFor, label, id, name, type, autoComplete }) => {
     return (
         <div className={styles.container}>
             <label
@@ -22,6 +22,7 @@ export default function InputWithLabel({ htmlFor, label, id, name, type, autoCom
             </label>
             <input
                 id={id}
+                data-testid={id}
                 name={name}
                 type={type}
                 autoComplete={autoComplete}
@@ -29,3 +30,5 @@ export default function InputWithLabel({ htmlFor, label, id, name, type, autoCom
         </div>
     );
 };
+
+export default InputWithLabel;

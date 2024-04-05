@@ -15,7 +15,7 @@ const ModalComponent = lazy(() => import('../../components/Modal'));
  * Function component Employee Form - Represent the Form Component
  * @returns {JSX.Element} The rendered Employee Form  component.
  */
-export default function EmployeeForm() {
+const EmployeeForm = () => {
     const dispatch = useDispatch();
 
     // State variables using useState hook
@@ -184,3 +184,5 @@ export default function EmployeeForm() {
         </form >
     );
 };
+
+export default EmployeeForm;

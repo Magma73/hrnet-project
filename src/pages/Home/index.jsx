@@ -7,7 +7,7 @@ const EmployeeForm = lazy(() => import('../../components/Form'));
  * Function component Home - Represent the Home Page
  * @returns {JSX.Element} The rendered Home component.
  */
-export default function Home() {
+const Home = () => {
 
     return (
         <div className={styles.container} >
@@ -24,3 +24,5 @@ export default function Home() {
         </div>
     );
 };
+
+export default Home;

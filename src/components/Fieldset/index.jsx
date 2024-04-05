@@ -6,11 +6,13 @@ import styles from "./Fieldset.module.css";
  * @param {ReactNode} children - The children components to be rendered inside the fieldset.
  * @returns {JSX.Element} The rendered Fieldset component.
  */
-export default function Fieldset({ legend, children }) {
+const Fieldset = ({ legend, children }) => {
     return (
         <fieldset className={styles.fieldset}>
             <legend>{legend}</legend>
             {children}
         </fieldset>
     );
-}
+};
+
+export default Fieldset;

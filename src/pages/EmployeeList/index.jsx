@@ -6,7 +6,7 @@ import styles from "./EmployeeList.module.css";
  * Function component EmployeeList - Represent the EmployeeList Page
  * @returns {JSX.Element} The rendered EmployeeList component.
  */
-export default function EmployeeList() {
+const EmployeeList = () => {
     return (
         <div className={styles.container}>
             <h1 className={styles.h1}>Current Employees</h1>
@@ -18,3 +18,5 @@ export default function EmployeeList() {
 
     );
 };
+
+export default EmployeeList;
