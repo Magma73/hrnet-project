@@ -2,7 +2,6 @@
  * @jest-environment jsdom
  */
 import React from 'react';
-import '@testing-library/jest-dom';
 import { render, screen, cleanup } from '@testing-library/react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Error from '../pages/Error';

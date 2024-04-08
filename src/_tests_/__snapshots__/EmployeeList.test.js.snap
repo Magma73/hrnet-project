@@ -21,6 +21,7 @@ exports[`Given a MemoryRouter with initial entry pointing to the Employee List p
         <label>
           Show 
           <select
+            data-testid="paginationSelect"
             id="paginationSelect"
             onChange={[Function]}
             value={10}
@@ -60,6 +61,7 @@ exports[`Given a MemoryRouter with initial entry pointing to the Employee List p
             Search : 
           </label>
           <input
+            data-testid="globalFilter"
             id="globalFilter"
             onChange={[Function]}
             value=""
