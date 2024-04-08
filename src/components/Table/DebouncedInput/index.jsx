@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
  * @param {number} [props.debounce=500] - The delay (in milliseconds) before the value change is propagated.
  * @returns {JSX.Element} - The input component with debounce.
  */
-const DebouncedInput = ({ value: initialValue, id, htmlFor, label, onChange, debounce = 500, ...props }) => {
+const DebouncedInput = ({ value: initialValue, id, htmlFor, label, onChange, debounce = 500, testId, ...props }) => {
     const [value, setValue] = useState(initialValue);
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const DebouncedInput = ({ value: initialValue, id, htmlFor, label, onChange, deb
             <label htmlFor={htmlFor}>
                 {label}
             </label>
-            <input {...props} value={value} id={id} onChange={handleChange} />
+            <input {...props} value={value} id={id} data-testid={testId} onChange={handleChange} />
         </div>
     );
 }

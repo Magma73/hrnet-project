@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import React from 'react';
 import { screen, render, cleanup } from '@testing-library/react';
 import DatePickerComponent from '../components/DatePicker';

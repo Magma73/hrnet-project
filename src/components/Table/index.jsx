@@ -108,6 +108,7 @@ const TableComponent = () => {
                 <label>Show&nbsp;
                     <select
                         id="paginationSelect"
+                        data-testid="paginationSelect"
                         value={pagination.pageSize}
                         onChange={e => {
                             table.setPageSize(e.target.value)
@@ -125,6 +126,7 @@ const TableComponent = () => {
                 <DebouncedInput
                     value={globalFilter ?? ''}
                     id="globalFilter"
+                    testId="globalFilter"
                     htmlFor="globalFilter"
                     label="Search : "
                     onChange={value => setGlobalFilter(value)}
@@ -152,7 +154,7 @@ const TableComponent = () => {
                                                     header.getContext()
                                                 )}
                                                 {header.column.getCanSort() && (
-                                                    <span className={styles.arrow}>
+                                                    <span className={styles.arrow} data-testid="arrow-icon">
                                                         {header.column.getIsSorted() === 'desc' && ' 🔽'}
                                                         {header.column.getIsSorted() === 'asc' && ' 🔼'}
                                                     </span>
@@ -171,7 +173,7 @@ const TableComponent = () => {
                         .rows
                         .map(row => {
                             return (
-                                <tr key={row.id} className={styles.tr}>
+                                <tr key={row.id} className={styles.tr} data-testid="table-row">
                                     {row.getVisibleCells().map(cell => {
                                         const columnDef = cell.column.columnDef.accessorKey;
                                         const formattedLabel = formatLabel(columnDef);

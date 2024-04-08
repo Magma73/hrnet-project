@@ -29,9 +29,6 @@ describe('Given I use the Table Component in my App', () => {
     test('Then, it should render the table with the correct number of rows and columns', () => {
       render(<TableComponent />);
       const rows = screen.getAllByTestId('table-row');
-
-      // //   // Le nombre de lignes devrait correspondre au nombre d'éléments dans les données mockées
-      //   expect(rows.length - 1).toEqual(mockData.length);
       expect(rows.length).toEqual(10);
     });
 
