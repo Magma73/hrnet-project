@@ -5,9 +5,9 @@
 ## Table des matières
 
 - [Contexte](#description)
-- [Mission](#missionduprojet)
+- [Mission](#mission)
 - [Technologies](#technologies)
-- [Notes et contraintes](#notesetcontraintes)
+- [Notes et contraintes](#notes)
 - [Tester le projet](#usage)
 - [Auteur](#auteur)
 - [License](#license)
