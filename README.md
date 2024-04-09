@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+[![React version](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/) [![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)](https://redux.js.org/) [![React router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](https://reactrouter.com/en/main) [![CSS version](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://www.w3.org/Style/CSS/#specs) [![NPM version](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/) [![Node version](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/en) [![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)](https://vitejs.dev/) [![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/fr/) [![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Projet 14 - Faites passer une librairie jQuery vers React
 
-## Available Scripts
+## Table des matières
 
-In the project directory, you can run:
+- [Contexte](#description)
+- [Mission](#missionduprojet)
+- [Technologies](#technologies)
+- [Notes et contraintes](#notesetcontraintes)
+- [Tester le projet](#usage)
+- [Auteur](#auteur)
+- [License](#license)
 
-### `npm start`
+## Contexte du projet
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+WealthHealth, grande société financière, utilise une application web interne, appelée HRnet. Cette application permet de gérer les dossiers des employés. Malheureusement, elle est ancienne et utilise jQuery côté front end, ce qui entraîne des bugs considérables.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Mission du projet
 
-### `npm test`
+La mission principale du projet est de convertir l’application interne HRnet en React pour qu’elle soit plus performante.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Dans le détail, les objectifs sont de :
 
-### `npm run build`
+- Convertir l'ensemble du projet HRNet en React
+- Convertir l'un des quatre plugins jQuery actuels en React. Remplacer les 3 plugins jQuery restants par des composants React à coder soi-même, ou que l’on peut importer depuis des libraires existantes en cas de manque de temps
+- Effectuer des tests de performance Lighthouse en comparant l'ancienne et la nouvelle application
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React V18.2.0
+- React-Dom V18.2.0
+- React-Redux: V9.1.0
+- React-Router-dom: V6.22.0
+- React-Scripts: V5.0.1
+- React-Select: V5.8.0
+- @reduxjs/toolkit: V2.2.1
+- @magma73/modal-react: V1.2.0
+- @tanstack/react-table: V8.13.2
+- React-datepicker: V6.1.0
+- NPM V10.5.1
+- NodeJS V20.10.0
+- VS Code V1.88.0
+- [Create React App](https://github.com/facebook/create-react-app)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Notes et contraintes
 
-### `npm run eject`
+- Utiliser React
+- Produire la documentation du code du plugin React
+- Supprimer tout code JQuery
+- Utiliser Lighthouse pour les tests de performance
+- Documenter le projet : Readme, proptypes et JSDoc (facultatif)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Tester le projet
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Pour tester simplement et rapidement le projet, vous pouvez visiter la démo en ligne : https://hrnet-project.vercel.app/
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Sinon, vous pouvez également cloner le projet :
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+https://github.com/Magma73/hrnet-project.git
 
-## Learn More
+Accédez au répertoire du projet puis utilisez la commande `npm install` pour installer les dépendances du projet et `npm run start` pour ouvrir l'application dans votre navigateur.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Auteur
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Marine Magnin
 
-### Code Splitting
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ISC © [Marine Magnin](https://github.com/Magma73/)
