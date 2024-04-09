@@ -4,11 +4,11 @@
 
 ## Table des matières
 
-- [Contexte](#description)
-- [Mission](#mission)
+- [Contexte](#contexte-du-projet)
+- [Mission](#mission-du-projet)
 - [Technologies](#technologies)
-- [Notes et contraintes](#notes)
-- [Tester le projet](#usage)
+- [Notes et contraintes](#notes-et-contraintes)
+- [Tester le projet](#tester-le-projet)
 - [Auteur](#auteur)
 - [License](#license)
 
