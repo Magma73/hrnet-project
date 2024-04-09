@@ -18,7 +18,7 @@ WealthHealth, grande société financière, utilise une application web interne,
 
 ## Mission du projet
 
-La mission principale du projet est de convertir l’application interne HRnet en React pour qu’elle soit plus performante.
+La mission principale du projet est de convertir l’application interne [HRnet](https://github.com/OpenClassrooms-Student-Center/P12_Front-end) en React pour qu’elle soit plus performante.
 
 Dans le détail, les objectifs sont de :
 
