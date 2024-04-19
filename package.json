@@ -12,7 +12,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "@magma73/modal-react": "^1.1.0",
+    "@magma73/modal-react": "^1.2.0",
     "@reduxjs/toolkit": "^2.2.1",
     "@tanstack/react-table": "^8.13.2",
     "react": "^18.2.0",
@@ -24,9 +24,9 @@
     "react-select": "^5.8.0"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "react-scripts start",
     "build": "craco build",
-    "test": "react-scripts test"
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@magma73/modal-react)/\""
   },
   "eslintConfig": {
     "extends": [
@@ -50,12 +50,15 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-private-property-in-object": "^7.23.4",
     "@craco/craco": "^7.1.0",
+    "@principalstudio/html-webpack-inject-preload": "^1.2.7",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
     "html-critical-webpack-plugin": "^2.1.0",
+    "html-webpack-plugin": "^5.6.0",
     "jest": "^29.7.0",
     "jsdoc": "^4.0.2",
+    "mini-css-extract-plugin": "^2.9.0",
     "prettier": "^3.2.5",
     "react-test-renderer": "^18.2.0"
   }
