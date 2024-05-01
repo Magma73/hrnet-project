@@ -9,7 +9,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
-    errorElement: <Error />
+    errorElement: <ErrorRedirection />
   },
   {
     path: '/employeelist',
