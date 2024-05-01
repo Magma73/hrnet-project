@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import { addEmployeeInfos } from '../../slices/employeeInfos';
 import states from '../../data/states';
 import { store } from "../../store/store";
-import styles from "./EmployeeForm.module.css";
 import InputWithLabel from "../../components/InputWithLabel";
 import Fieldset from "../../components/Fieldset";
 import DatePickerComponent from "../../components/DatePicker";
 import SelectComponent from "../../components/SelectInput";
+import styles from "./EmployeeForm.module.css";
 
 const ModalComponent = lazy(() => import('../../components/Modal'));
 

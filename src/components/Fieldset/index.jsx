@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import styles from "./Fieldset.module.css";
 /**
  * Function component Fieldset - Represent the Fieldset Component
@@ -13,6 +14,11 @@ const Fieldset = ({ legend, children }) => {
             {children}
         </fieldset>
     );
+};
+
+Fieldset.propTypes = {
+    legend: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired
 };
 
 export default Fieldset;

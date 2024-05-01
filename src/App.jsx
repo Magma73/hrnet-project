@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 
 const EmployeeList = lazy(() => import('./pages/EmployeeList'));
-const Error = lazy(() => import('./pages/Error'));
+const ErrorRedirection = lazy(() => import('./pages/Error'));
 
 const router = createBrowserRouter([
   {
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     ),
     errorElement: (
       <Suspense fallback={<div>Loading</div>}>
-        <Error />
+        <ErrorRedirection />
       </Suspense>
     )
   },

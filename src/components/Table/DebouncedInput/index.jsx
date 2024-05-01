@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Function for input with debounce for value change.
@@ -38,5 +39,16 @@ const DebouncedInput = ({ value: initialValue, id, htmlFor, label, onChange, deb
             <input {...props} value={value} id={id} data-testid={testId} onChange={handleChange} />
         </div>
     );
-}
+};
+
+DebouncedInput.propTypes = {
+    value: PropTypes.any.isRequired,
+    id: PropTypes.string.isRequired,
+    htmlFor: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    debounce: PropTypes.number,
+    testId: PropTypes.string,
+};
+
 export default DebouncedInput;

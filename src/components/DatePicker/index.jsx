@@ -1,5 +1,6 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import PropTypes from 'prop-types';
 import styles from "./DatePicker.module.css";
 
 /**
@@ -36,6 +37,18 @@ const DatePickerComponent = ({ htmlFor, label, id, name, type, minDate, maxDate,
             />
         </div>
     );
+};
+
+DatePickerComponent.propTypes = {
+    htmlFor: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    minDate: PropTypes.instanceOf(Date),
+    maxDate: PropTypes.instanceOf(Date),
+    selectedDate: PropTypes.instanceOf(Date),
+    onChange: PropTypes.func.isRequired,
 };
 
 export default DatePickerComponent;

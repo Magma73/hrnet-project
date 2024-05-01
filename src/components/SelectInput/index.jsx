@@ -1,4 +1,5 @@
 import Select from 'react-select';
+import PropTypes from 'prop-types';
 import styles from "./Select.module.css";
 
 /**
@@ -31,6 +32,17 @@ const SelectComponent = ({ htmlFor, label, inputId, name, defaultValue, onChange
             />
         </div>
     );
+};
+
+SelectComponent.propTypes = {
+    htmlFor: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    inputId: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    defaultValue: PropTypes.object,
+    onChange: PropTypes.func.isRequired,
+    options: PropTypes.array.isRequired,
+    placeholder: PropTypes.string,
 };
 
 export default SelectComponent;

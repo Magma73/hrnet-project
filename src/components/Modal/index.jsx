@@ -1,4 +1,5 @@
 import { Modal } from '@magma73/modal-react';
+import PropTypes from 'prop-types';
 import styles from './Modal.module.css';
 
 const ModalComponent = ({ isOpen, closeModal }) => {
@@ -14,6 +15,11 @@ const ModalComponent = ({ isOpen, closeModal }) => {
             titleClose="Close"
         />
     );
-}
+};
+
+ModalComponent.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    closeModal: PropTypes.func.isRequired,
+};
 
 export default ModalComponent;

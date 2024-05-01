@@ -5,7 +5,7 @@ import styles from "./Error.module.css";
  * Function component Error - Represents an error page component.
  * @returns {JSX.Element} The rendered Error component.
  */
-const Error = () => {
+const ErrorRedirection = () => {
     const error = useRouteError();
     return (
         <div>
@@ -19,4 +19,4 @@ const Error = () => {
     );
 };
 
-export default Error;
+export default ErrorRedirection;

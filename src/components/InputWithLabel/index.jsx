@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styles from "./InputLabel.module.css";
 
 /**
@@ -29,6 +30,15 @@ const InputWithLabel = ({ htmlFor, label, id, name, type, autoComplete }) => {
             />
         </div>
     );
+};
+
+InputWithLabel.propTypes = {
+    htmlFor: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    autoComplete: PropTypes.string,
 };
 
 export default InputWithLabel;
